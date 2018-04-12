@@ -5,6 +5,7 @@ class Entity : public sf::Sprite {
 
 public:
 	Entity();
+	~Entity();
 	void update();
 
 

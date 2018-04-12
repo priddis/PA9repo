@@ -1,4 +1,5 @@
-#include "GameState.h"
+#include "header/GameState.h"
+#include "entities/Entity.h"
 
 GameState::GameState()
 {

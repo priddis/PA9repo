@@ -1,6 +1,6 @@
 #pragma once
-#include "GameState.h"
-#include "EventManager.h"
+#include "header/GameState.h"
+#include "header/EventManager.h"
 
 class Engine {
 
