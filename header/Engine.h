@@ -1,6 +1,10 @@
+//An engine object contains the main game loop and is where objects are rendered to the screen
+
 #pragma once
 #include "header/GameState.h"
 #include "header/EventManager.h"
+
+
 
 class Engine {
 

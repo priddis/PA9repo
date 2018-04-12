@@ -1,5 +1,7 @@
+//An engine object contains the main game loop and is where objects are rendered to the screen
+
 #include "header/Engine.h"
-#include "header/EventManager.h"
+
 
 Engine::Engine() {
 
@@ -8,6 +10,7 @@ Engine::Engine() {
 
 Engine::~Engine()
 {
+
 }
 
 //iterates through the list of sprites and draws each one to the screen
@@ -29,19 +32,21 @@ void Engine::run() {
 	{
 
 		sf::Event event;
+		GameState state;
 
 		while (window->pollEvent(event))
 		{
-
+			//events related to the window are handled outside of eventmanager
 			if (event.type == sf::Event::Closed) {
 				window->close();
 			}
 			else {
-				EventManager::handleEvent(event);
+				EventManager::handleEvent(event,state.getKeys());
 			}
 		}
-
+		//clear the screen in order to render the next frame
 		window->clear();
+
 		drawSprites();
 		window->display();
 	}

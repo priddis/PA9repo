@@ -1,68 +1,84 @@
 #include "header/EventManager.h"
-#include "header/GameState.h"
+
+//EventManager is a list of functions to handle events such as input
+
+
 //handle event is the function that is handed events and decides what actions to take
 
 namespace EventManager {
 
-	//the handleEvent function 
-	void handleEvent(sf::Event & ev, keyState keys)
+	//the handleEvent function looks at the event and determines what functions to call based on that event
+	void handleEvent(sf::Event & ev, KeyState &keys)
 	{
 
-
+		//key presses
 		if ((ev.type == sf::Event::KeyPressed) && (ev.key.code == sf::Keyboard::A)) {
-			aKey();
+			aKeyDown(keys);
+		}
+		if ((ev.type == sf::Event::KeyReleased) && (ev.key.code == sf::Keyboard::A)) {
+			aKeyUp(keys);
 		}
 
-		if (ev.type == sf::Event::MouseButtonReleased) 
-		{
-			if (ev.mouseButton.button == sf::Mouse::Left) 
-			{
-				leftMouseButtonUp();
-			}
 
-			if (ev.mouseButton.button == sf::Mouse::Right) 
-			{
-				rightMouseButtonUp();
-			}
-		}
-
+		//mouse button presses
 
 		if (ev.type == sf::Event::MouseButtonPressed)
 		{
 			if (ev.mouseButton.button == sf::Mouse::Right)
 			{
-				rightMouseButtonDown();
+				rightMouseButtonDown(keys);
 			}
-			if (ev.mouseButton.button == sf::Mouse::Left) 
+			if (ev.mouseButton.button == sf::Mouse::Left)
 			{
-				leftMouseButtonDown();
+				leftMouseButtonDown(keys);
 			}
 		}
 
+
+		//mouse button release
+
+		if (ev.type == sf::Event::MouseButtonReleased)
+		{
+			if (ev.mouseButton.button == sf::Mouse::Left)
+			{
+				leftMouseButtonUp(keys);
+			}
+
+			if (ev.mouseButton.button == sf::Mouse::Right)
+			{
+				rightMouseButtonUp(keys);
+			}
+		}
+
+
 	}
 
+	void aKeyUp(KeyState &keys) {
+		std::cout << "Testing the 'A' key press\n";
+		keys.a = true;
+	}
+	void aKeyDown(KeyState &keys) {
+		std::cout << "Testing the 'A' key release\n";
+		keys.a = false;
+	}
 
-	void leftMouseButtonDown() {
+	void leftMouseButtonDown(KeyState &keys) {
 		std::cout << "Testing leftMouseButton down\n";
+		keys.lmb = true;
 	}
-	void leftMouseButtonUp() {
+	void leftMouseButtonUp(KeyState &keys) {
 		std::cout << "Testing left leftMouseButton up \n";
+		keys.lmb = false;
 	}
 
-	void rightMouseButtonDown() { 
+	void rightMouseButtonDown(KeyState &keys) {
 		std::cout << "Testing rightMouseButton down\n";
+		keys.rmb = true;
 	}
 
-	void rightMouseButtonUp() {
+	void rightMouseButtonUp(KeyState &keys) {
 		std::cout << "Testing rightMouseButton up\n";
+		keys.rmb = false;
 	}
-
-	void aKey() {
-		std::cout << "Testing the \'A\' key\n";
-	}
-
 
 }
-
-
-

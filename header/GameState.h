@@ -9,7 +9,7 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 #include <SFML/Graphics.hpp>
 
 
-struct keyState {
+struct KeyState {
 	bool lmb;
 	bool rmb;
 	bool a;
@@ -24,7 +24,7 @@ private:
 	std::list<sf::Sprite>* spriteList;
 
 	//list of keys currently held down
-	keyState keys;
+	KeyState keys;
 
 
 public:
@@ -33,4 +33,5 @@ public:
 
 	std::list<sf::Sprite>* & getSprites();
 
+	KeyState & getKeys();
 };
