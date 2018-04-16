@@ -9,3 +9,6 @@ sfml-system-2.dll
 sfml-system-d-2.dll
 sfml-window-2.dll
 sfml-window-d-2.dll
+*.db
+*.opendb
+PA9.VC.db
