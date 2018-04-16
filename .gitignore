@@ -1,7 +1,6 @@
 Debug/
 x64/
-PA9.vcxproj
-PA9.vcxproj.filters
+
 sfml-graphics-2.dll
 sfml-graphics-d-2.dll
 sfml-network-2.dll
@@ -10,7 +9,3 @@ sfml-system-2.dll
 sfml-system-d-2.dll
 sfml-window-2.dll
 sfml-window-d-2.dll
-PA9.sln
-PA9.VC.db
-.vs/
-PA9.VC.VC.opendb
