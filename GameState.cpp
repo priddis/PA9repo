@@ -6,7 +6,6 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 
 
 #include "header/GameState.h"
-#include "entities/Entity.h"
 
 
 GameState::GameState()

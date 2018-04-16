@@ -27,9 +27,6 @@
     <ClCompile Include="EventManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entities\test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Engine.h">
@@ -41,13 +38,7 @@
     <ClInclude Include="header\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="entities\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="entities\include_entities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entities\test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

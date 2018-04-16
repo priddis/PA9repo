@@ -116,15 +116,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="entities\test.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="entities\Entity.h" />
     <ClInclude Include="entities\include_entities.h" />
-    <ClInclude Include="entities\test.h" />
     <ClInclude Include="header\Engine.h" />
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />

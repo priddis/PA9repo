@@ -26,8 +26,6 @@ void Engine::drawSprites()
 //and this is where sprites are drawn
 void Engine::run() {
 
-	test t(40,20);
-
 	//main game loop. one pass through this is one frame
 	while (window->isOpen())
 	{
@@ -47,7 +45,6 @@ void Engine::run() {
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
-		window->draw(t);
 		drawSprites();
 		window->display();
 	}
