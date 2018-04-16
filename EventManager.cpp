@@ -18,6 +18,9 @@ namespace EventManager {
 		if ((ev.type == sf::Event::KeyReleased) && (ev.key.code == sf::Keyboard::A)) {
 			aKeyUp(keys);
 		}
+		if ((ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::D)) {
+			dKeyDown(keys);
+		}
 
 
 		//mouse button presses
@@ -61,6 +64,12 @@ namespace EventManager {
 		std::cout << "Testing the 'A' key release\n";
 		keys.a = false;
 	}
+	void dKeyDown(KeyState &keys) {
+		std::cout << "Testing the 'D' key press\n";
+		keys.a = true;
+	}
+
+
 
 	void leftMouseButtonDown(KeyState &keys) {
 		std::cout << "Testing leftMouseButton down\n";

@@ -11,6 +11,7 @@ namespace EventManager {
 	
 	void aKeyUp(KeyState &keys);
 	void aKeyDown(KeyState & keys);
+	void dKeyDown(KeyState &keys);
 	void leftMouseButtonUp(KeyState &keys);
 	void leftMouseButtonDown(KeyState &keys);
 	void rightMouseButtonUp(KeyState &keys);
