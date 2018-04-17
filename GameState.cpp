@@ -7,11 +7,10 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 
 #include "header/GameState.h"
 
-
 GameState::GameState()
 {
 	spriteList = new std::list<sf::Sprite>;
-	
+	//uiList = new std::list<UI>;
 	keys.rmb = false;
 	keys.lmb = false;
 	keys.a = false;
@@ -24,7 +23,11 @@ GameState::~GameState() {
 
 	delete spriteList;
 }
-
+/*
+std::list<UI>* & GameState::getUIElements() {
+	return uiList;
+}
+*/
 std::list<sf::Sprite>*& GameState::getSprites()
 {
 	return spriteList;
