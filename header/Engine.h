@@ -4,8 +4,6 @@
 #include "header/GameState.h"
 #include "header/EventManager.h"
 
-
-
 class Engine {
 
 public:

@@ -16,8 +16,9 @@ Engine::~Engine()
 //iterates through the list of sprites and draws each one to the screen
 void Engine::drawSprites()
 {
-	for (sf::Sprite spr : *state.getSprites() ) {
-		window->draw(spr);
+	//tw. changed ptr / list ptr here 
+	for (sf::Sprite* spr : state.getSprites() ) {
+		window->draw(*spr);
 	}
 }
 
@@ -25,15 +26,13 @@ void Engine::drawSprites()
 //this is where events are handled through the event handler
 //and this is where sprites are drawn
 void Engine::run() {
-
+	//tw. move these outside the while loop
+	sf::Event event;
+	//GameState state;
 
 	//main game loop. one pass through this is one frame
 	while (window->isOpen())
 	{
-
-		sf::Event event;
-		GameState state;
-
 		while (window->pollEvent(event))
 		{
 			//events related to the window are handled outside of eventmanager

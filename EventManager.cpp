@@ -1,8 +1,6 @@
 #include "header/EventManager.h"
 
 //EventManager is a list of functions to handle events such as input
-
-
 //handle event is the function that is handed events and decides what actions to take
 
 namespace EventManager {
@@ -52,8 +50,6 @@ namespace EventManager {
 				rightMouseButtonUp(keys);
 			}
 		}
-
-
 	}
 
 	void aKeyUp(KeyState &keys) {
@@ -68,8 +64,6 @@ namespace EventManager {
 		std::cout << "Testing the 'D' key press\n";
 		keys.a = true;
 	}
-
-
 
 	void leftMouseButtonDown(KeyState &keys) {
 		std::cout << "Testing leftMouseButton down\n";
@@ -89,5 +83,4 @@ namespace EventManager {
 		std::cout << "Testing rightMouseButton up\n";
 		keys.rmb = false;
 	}
-
 }
