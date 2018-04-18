@@ -8,7 +8,6 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 #include <list>
 #include <SFML/Graphics.hpp>
 
-
 struct KeyState {
 	bool lmb;
 	bool rmb;
@@ -32,6 +31,7 @@ public:
 	~GameState();
 
 	std::list<sf::Sprite>* & getSprites();
+	//std::list<UI>* & getUIElements();
 
 	KeyState & getKeys();
 };

@@ -45,6 +45,7 @@ void Engine::run() {
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
+		window->draw(test);
 		drawSprites();
 		window->display();
 	}

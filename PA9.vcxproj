@@ -119,12 +119,14 @@
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entities\include_entities.h" />
     <ClInclude Include="header\Engine.h" />
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
