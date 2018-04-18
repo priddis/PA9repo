@@ -11,7 +11,15 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 struct KeyState {
 	bool lmb;
 	bool rmb;
+
 	bool a;
+	bool d;
+	bool w;
+	bool s;
+
+	bool space;
+	bool lshift;
+	
 
 };
 
