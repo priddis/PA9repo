@@ -8,7 +8,7 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 #include "header/GameState.h"
 #include "entities/Entity.h"
 //for cout test
-#include <iostream>
+//#include <iostream>
 
 
 GameState::GameState()
@@ -20,8 +20,10 @@ GameState::GameState()
 	keys.lmb = false;
 	keys.a = false;
 
-	//tw. loading the file for my test sprite/unit
-	std:: cout << "texture success: " << texture_tank.loadFromFile("texture.png" ) << std::endl;
+	texture_tank = new sf::Texture;
+
+	texture_tank->loadFromFile("assets/texture.png");
+
 	//this is for testing only.... i only want to create one new tank... not used to the (basically) infinite loop structure... needed to find a place that would only run once
 	test_newTank();
 }
@@ -51,22 +53,24 @@ KeyState & GameState::getKeys()
 
 //what would be the most appropriate class for a function that instantiates an object and puts it on the screen? gamestate? or elsewhere?
 //also this is just a sprite, and should be a derived unit class. that is the plan, just testing with sprite first and then moving to inherited unit class
-void GameState::test_newTank()
+Unit* GameState::test_newTank()
 {
 	// Create a new sprite on the heap
-	sf::Sprite* pMem = new sf::Sprite();
+
+	Unit* pMem = new Unit(texture_tank);
+	//pMem->setTexture(texture_tank);
 	//set its default texture
-	pMem->setTexture(texture_tank);
 
 	//set defaults position. in the future maybe this takes a tile coordinate parameter to set pos. 
-	pMem->setPosition(10, 10);
+	//pMem->setPosition(10, 10);
 
 	//setcolor temporarily while my loadtexture continues to fail....
 	//this used to work. no longer, meh.
-	pMem->setColor(sf::Color(000, 200, 000, 200));
+	//pMem->setColor(sf::Color(000, 200, 000, 200));
 
-	//add it to our Sprite list
+	//add it to our Sprite list (testing functionality only)
 	spriteList.push_front(pMem);
 
 	//continuous drawing occurs in engine::drawsprites
+	return pMem;
 }

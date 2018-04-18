@@ -7,6 +7,8 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 #pragma once
 #include <list>
 #include <SFML/Graphics.hpp>
+//included for units
+#include "Unit.h"
 
 
 struct KeyState {
@@ -29,7 +31,7 @@ private:
 
 	//tw. how should we organize textures? i suppose for this project we wont have to many, and only one texture needs to be initialized for all units of that type.
 	//we will know what file to associate at run time. so load all textures files when obj is created (from constructor?) ew
-	sf::Texture texture_tank;
+	sf::Texture* texture_tank;
 
 public:
 	GameState();
@@ -41,5 +43,5 @@ public:
 	KeyState & getKeys();
 
 	//tw. test adding a new tank unit to our spritelist
-	void test_newTank();
+	Unit* test_newTank();
 };
