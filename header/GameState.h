@@ -7,6 +7,7 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 #pragma once
 #include <list>
 #include <SFML/Graphics.hpp>
+#include "Cursor.h"
 
 struct KeyState {
 	bool lmb;
@@ -19,8 +20,6 @@ struct KeyState {
 
 	bool space;
 	bool lshift;
-	
-
 };
 
 class GameState{
@@ -29,7 +28,8 @@ private:
 
 	//list of sprites to display to the screen
 	std::list<sf::Sprite>* spriteList;
-
+	std::list<UI>* uiList;
+	
 	//list of keys currently held down
 	KeyState keys;
 
@@ -39,7 +39,9 @@ public:
 	~GameState();
 
 	std::list<sf::Sprite>* & getSprites();
-	//std::list<UI>* & getUIElements();
+	std::list<UI>* & getUIElements();
+
+	void addUI(UI &newUI);
 
 	KeyState & getKeys();
 };

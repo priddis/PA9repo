@@ -15,6 +15,9 @@ public:
 	void drawSprites();
 	void addSprite(sf::Sprite &newSprite);
 	void removeSprite(sf::Sprite* &deleteSprite);
+
+	void drawUI();
+	void updateUI();
 	void run();
 
 private:

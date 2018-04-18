@@ -132,11 +132,9 @@
     <ClInclude Include="header\Engine.h" />
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />
+    <ClInclude Include="KeyState.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="UI.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="PA9.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="cursor.png" />

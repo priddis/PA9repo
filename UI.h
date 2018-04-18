@@ -1,4 +1,6 @@
+#pragma once
 #include <SFML/Graphics.hpp>
+
 
 class UI : public sf::Drawable
 {
@@ -15,6 +17,9 @@ public:
 	UI(sf::Sprite Sprite);
 	UI(sf::Sprite Sprite, sf::Color Color);
 	UI(sf::Sprite Sprite, sf::Texture Texture);
+
+	// Function to handle updates for each derived.
+	virtual void update() {};
 
 	// Get
 	sf::Vector2<int> UI::getPosition() { return position; }

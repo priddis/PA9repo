@@ -21,13 +21,27 @@ void Engine::drawSprites()
 	}
 }
 
+//iterates through the list of UI and draws each one to the screen
+void Engine::drawUI()
+{
+	for (UI uiElement : *state.getUIElements()) {
+		window->draw(uiElement);
+	}
+}
+
+void Engine::updateUI()
+{
+	for (UI uiElement : *state.getUIElements()) {
+		uiElement.update();
+	}
+}
+
+
 //run() contains the main game loop
 //this is where events are handled through the event handler
 //and this is where sprites are drawn
 void Engine::run() {
-
 	sf::Event event;
-
 	//main game loop. one pass through this is one frame
 	while (window->isOpen())
 	{
@@ -44,7 +58,8 @@ void Engine::run() {
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
-		drawSprites();
+		updateUI();
+		drawUI();
 		window->display();
 	}
 }
