@@ -14,7 +14,14 @@ GameState::GameState()
 	
 	keys.rmb = false;
 	keys.lmb = false;
+
 	keys.a = false;
+	keys.d = false;
+	keys.w = false;
+	keys.s = false;
+
+	keys.space = false;
+	keys.lshift = false;
 }
 
 GameState::~GameState() {

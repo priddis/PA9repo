@@ -12,64 +12,114 @@ namespace EventManager {
 	{
 
 		//key presses
-		if ((ev.type == sf::Event::KeyPressed) && (ev.key.code == sf::Keyboard::A)) {
-			aKeyDown(keys);
+		if (ev.type == sf::Event::KeyPressed) {
+			if (ev.key.code == sf::Keyboard::A) {
+				aKeyDown(keys);
+			}
+			if (ev.key.code == sf::Keyboard::D) {
+				dKeyDown(keys);
+			}
+			if (ev.key.code == sf::Keyboard::S) {
+				sKeyDown(keys);
+			}
+			if (ev.key.code == sf::Keyboard::W) {
+				wKeyDown(keys);
+			}
+			if (ev.key.code == sf::Keyboard::Space) {
+				spaceKeyDown(keys);
+			}
+			if (ev.key.code == sf::Keyboard::LShift) {
+				lshiftKeyDown(keys);
+			}
+
 		}
-		if ((ev.type == sf::Event::KeyReleased) && (ev.key.code == sf::Keyboard::A)) {
-			aKeyUp(keys);
-		}
-		if ((ev.type == sf::Event::KeyPressed && ev.key.code == sf::Keyboard::D)) {
-			dKeyDown(keys);
+
+		//key releases
+		if (ev.type == sf::Event::KeyReleased) {
+			if (ev.key.code == sf::Keyboard::A) {
+				aKeyUp(keys);
+			}
+			if (ev.key.code == sf::Keyboard::D) {
+				dKeyUp(keys);
+			}
+			if (ev.key.code == sf::Keyboard::S) {
+				sKeyUp(keys);
+			}
+			if (ev.key.code == sf::Keyboard::W) {
+				wKeyUp(keys);
+			}
+			if (ev.key.code == sf::Keyboard::Space) {
+				spaceKeyUp(keys);
+			}
+			if (ev.key.code == sf::Keyboard::LShift) {
+				lshiftKeyUp(keys);
+			}
 		}
 
 
 		//mouse button presses
-
-		if (ev.type == sf::Event::MouseButtonPressed)
-		{
-			if (ev.mouseButton.button == sf::Mouse::Right)
-			{
+		if (ev.type == sf::Event::MouseButtonPressed){
+			if (ev.mouseButton.button == sf::Mouse::Right){
 				rightMouseButtonDown(keys);
 			}
-			if (ev.mouseButton.button == sf::Mouse::Left)
-			{
+			if (ev.mouseButton.button == sf::Mouse::Left){
 				leftMouseButtonDown(keys);
 			}
 		}
 
 
 		//mouse button release
-
-		if (ev.type == sf::Event::MouseButtonReleased)
-		{
-			if (ev.mouseButton.button == sf::Mouse::Left)
-			{
+		if (ev.type == sf::Event::MouseButtonReleased){
+			if (ev.mouseButton.button == sf::Mouse::Left){
 				leftMouseButtonUp(keys);
 			}
-
-			if (ev.mouseButton.button == sf::Mouse::Right)
-			{
+			if (ev.mouseButton.button == sf::Mouse::Right){
 				rightMouseButtonUp(keys);
 			}
 		}
-
-
 	}
 
+	//setting the bools in KeyState
 	void aKeyUp(KeyState &keys) {
-		std::cout << "Testing the 'A' key press\n";
-		keys.a = true;
-	}
-	void aKeyDown(KeyState &keys) {
-		std::cout << "Testing the 'A' key release\n";
 		keys.a = false;
 	}
-	void dKeyDown(KeyState &keys) {
-		std::cout << "Testing the 'D' key press\n";
+	void aKeyDown(KeyState &keys) {
 		keys.a = true;
 	}
+	void dKeyUp(KeyState &keys) {
+		keys.d = false;
+	}
+	void dKeyDown(KeyState &keys) {
+		keys.d = true;
+	}
+	void wKeyUp(KeyState & keys){
+		keys.w = false;
+	}
+	void wKeyDown(KeyState & keys) {
+		keys.w = true;
+	}
+	void sKeyUp(KeyState & keys) {
+		keys.s = false;
+	}
+	void sKeyDown(KeyState & keys) {
+		keys.s = true;
+	}
 
+	void spaceKeyUp(KeyState & keys){
+		keys.space = false;
+	}
 
+	void spaceKeyDown(KeyState & keys){
+		keys.space = true;
+	}
+
+	void lshiftKeyUp(KeyState & keys){
+		keys.lshift = false;
+	}
+
+	void lshiftKeyDown(KeyState & keys){
+		keys.lshift = true;
+	}
 
 	void leftMouseButtonDown(KeyState &keys) {
 		std::cout << "Testing leftMouseButton down\n";
@@ -79,12 +129,10 @@ namespace EventManager {
 		std::cout << "Testing left leftMouseButton up \n";
 		keys.lmb = false;
 	}
-
 	void rightMouseButtonDown(KeyState &keys) {
 		std::cout << "Testing rightMouseButton down\n";
 		keys.rmb = true;
 	}
-
 	void rightMouseButtonUp(KeyState &keys) {
 		std::cout << "Testing rightMouseButton up\n";
 		keys.rmb = false;

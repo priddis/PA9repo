@@ -26,13 +26,11 @@ void Engine::drawSprites()
 //and this is where sprites are drawn
 void Engine::run() {
 
+	sf::Event event;
+
 	//main game loop. one pass through this is one frame
 	while (window->isOpen())
 	{
-
-		sf::Event event;
-		GameState state;
-
 		while (window->pollEvent(event))
 		{
 			//events related to the window are handled outside of eventmanager
@@ -41,7 +39,9 @@ void Engine::run() {
 			}
 			else {
 				EventManager::handleEvent(event,state.getKeys());
+				if(state.getKeys())
 			}
+			
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
