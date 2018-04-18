@@ -1,10 +1,10 @@
 #include "Cursor.h"
 
 Cursor::Cursor(void) {
-	sf::Texture Texture;
-	Texture.loadFromFile("cursor.png");
+	sf::Texture* TexturePtr = new sf::Texture();
+	(*TexturePtr).loadFromFile("cursor.png");
 	
-	UI::setTexture(Texture);
+	UI::setTexture(TexturePtr);
 
 }
 
