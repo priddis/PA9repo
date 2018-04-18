@@ -39,7 +39,6 @@ void Engine::run() {
 			}
 			else {
 				EventManager::handleEvent(event,state.getKeys());
-				if(state.getKeys())
 			}
 			
 		}
