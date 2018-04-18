@@ -14,7 +14,17 @@ GameState::GameState()
 	//currentPlayer is the player that is currently making their turn
 	//true = team1, false = team2
 	currentPlayer = true;
+	turnCounter = 1;
 
+
+	//TODO: when tilemap is complete add code to get dimensions here
+	//mapSizeX = 
+	//mapSizeY = 
+
+
+
+	//key assignments, by default all keys are set to false
+	//false = key up, true = key down
 	keys.rmb = false;
 	keys.lmb = false;
 
@@ -44,7 +54,24 @@ KeyState & GameState::getKeys()
 	return keys;
 }
 
+/*void GameState::attack(Unit & unit1, Unit & unit2){
+	unit2.getHP() -= unit1.getATK()
+
+}*
+
+/*void GameState::moveUnit(Unit & unit){
+
+	
+
+}
+*/
+
+//ends the turn by switching players and adds to the turn counter whenever player1's turn begins
 void GameState::endTurn() {
 	currentPlayer = !currentPlayer;
+
+	if (currentPlayer) {
+		turnCounter++;
+	}
 }
 

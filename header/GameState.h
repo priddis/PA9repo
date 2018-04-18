@@ -33,6 +33,9 @@ private:
 	std::list<sf::Sprite>* spriteList;
 
 	bool currentPlayer;
+	int turnCounter;
+	int mapSizeX;
+	int mapSizeY;
 
 	//TileMap level;
 
@@ -43,6 +46,8 @@ private:
 public:
 	GameState();
 	~GameState();
+
+	void update();
 
 	std::list<sf::Sprite>* & getSprites();
 	//std::list<UI>* & getUIElements();
