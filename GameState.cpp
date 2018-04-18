@@ -10,7 +10,11 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 GameState::GameState()
 {
 	spriteList = new std::list<sf::Sprite>;
-	//uiList = new std::list<UI>;
+
+	//currentPlayer is the player that is currently making their turn
+	//true = team1, false = team2
+	currentPlayer = true;
+
 	keys.rmb = false;
 	keys.lmb = false;
 
@@ -30,13 +34,8 @@ GameState::~GameState() {
 
 	delete spriteList;
 }
-/*
-std::list<UI>* & GameState::getUIElements() {
-	return uiList;
-}
-*/
-std::list<sf::Sprite>*& GameState::getSprites()
-{
+
+std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
 }
 
@@ -45,4 +44,7 @@ KeyState & GameState::getKeys()
 	return keys;
 }
 
+void GameState::endTurn() {
+	currentPlayer = !currentPlayer;
+}
 

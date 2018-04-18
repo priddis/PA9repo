@@ -122,19 +122,18 @@ namespace EventManager {
 	}
 
 	void leftMouseButtonDown(KeyState &keys) {
-		std::cout << "Testing leftMouseButton down\n";
+
 		keys.lmb = true;
 	}
 	void leftMouseButtonUp(KeyState &keys) {
-		std::cout << "Testing left leftMouseButton up \n";
+
 		keys.lmb = false;
 	}
 	void rightMouseButtonDown(KeyState &keys) {
-		std::cout << "Testing rightMouseButton down\n";
 		keys.rmb = true;
 	}
 	void rightMouseButtonUp(KeyState &keys) {
-		std::cout << "Testing rightMouseButton up\n";
+
 		keys.rmb = false;
 	}
 
