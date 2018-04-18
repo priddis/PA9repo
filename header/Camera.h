@@ -23,6 +23,6 @@ public:
 	Camera(int inWidth, int inHeight, int maxWidth, int maxHeight);
 	~Camera();
 
-	void moveCamera(int xOffset, int yOffset;
+	void moveCamera(int xOffset, int yOffset);
 
 };
