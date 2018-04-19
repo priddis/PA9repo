@@ -1,11 +1,14 @@
-#include "Unit.h"
+//unit abstract class
+//reduceHealthAttacked() not defined below because it is pure virtual
+//tw 4/18/18
 
-Unit::Unit(sf::Texture* in_texture)
+#include "header/Unit.h"
+
+Unit::Unit(sf::Texture* in_texture, int in_team, float in_scale)
 	: sf::Sprite(*in_texture)
 {
-	//loading the initial texture. 
-	//later..... 4 textures per unit, each for facing a cardinal direction?
-	//this->setTexture(in_texture);
+	this->setTeam(in_team);
+	this->setScale(in_scale, in_scale);
 }
 
 Unit::~Unit()

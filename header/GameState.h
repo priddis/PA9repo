@@ -8,7 +8,7 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 #include <list>
 #include <SFML/Graphics.hpp>
 //included for units
-#include "Unit.h"
+#include "Tank.h"
 
 
 struct KeyState {
@@ -43,5 +43,5 @@ public:
 	KeyState & getKeys();
 
 	//tw. test adding a new tank unit to our spritelist
-	Unit* test_newTank();
+	Tank* test_newTank();
 };

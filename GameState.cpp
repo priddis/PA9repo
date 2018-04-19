@@ -53,11 +53,11 @@ KeyState & GameState::getKeys()
 
 //what would be the most appropriate class for a function that instantiates an object and puts it on the screen? gamestate? or elsewhere?
 //also this is just a sprite, and should be a derived unit class. that is the plan, just testing with sprite first and then moving to inherited unit class
-Unit* GameState::test_newTank()
+Tank* GameState::test_newTank()
 {
 	// Create a new sprite on the heap
 
-	Unit* pMem = new Unit(texture_tank);
+	Tank* pMem = new Tank(texture_tank, 1, 1);
 	//pMem->setTexture(texture_tank);
 	//set its default texture
 

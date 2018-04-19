@@ -121,13 +121,19 @@
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Road.cpp" />
+    <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Engine.h" />
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />
-    <ClInclude Include="Unit.h" />
+    <ClInclude Include="header\Road.h" />
+    <ClInclude Include="header\Tank.h" />
+    <ClInclude Include="header\Terrain.h" />
+    <ClInclude Include="header\Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
