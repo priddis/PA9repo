@@ -2,10 +2,36 @@
 
 #include "header/Engine.h"
 #include "entities/include_entities.h"
+#include <string>
+#include <fstream>
 
 Engine::Engine() {
 
-	window = new sf::RenderWindow(sf::VideoMode(800, 800), "SFML works!");
+	
+	std::map<std::string, std::string*> settings = loadConfigFile();
+
+	//declaring window settings and setting their defaults in case they are not defined in config.txt
+	int ResolutionX = 800;
+	int ResolutionY = 800;
+
+	bool Fullscreen = false;
+
+	if (settings.count("ResX")) {
+		ResolutionX = std::stoi(*settings.at("ResX"));
+	}
+	if (settings.count("RexY")) {
+		ResolutionY = std::stoi(*settings.at("ResY"));
+	}
+	if (settings.count("Fullscreen")) {
+		if ( *(settings.at("Fullscreen")) == "True") {
+			Fullscreen = true;
+		}
+	}
+
+	if (Fullscreen) {
+		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!", sf::Style::Fullscreen);
+	}
+	window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!");
 }
 
 Engine::~Engine()
@@ -47,4 +73,31 @@ void Engine::run() {
 		drawSprites();
 		window->display();
 	}
+}
+
+//used for parsing the config file, returns a vector with pointers to the parsed settings
+std::map<std::string,std::string*> Engine::loadConfigFile()
+{
+	std::ifstream fStrm("config.txt");
+	std::string str;
+
+	std::map<std::string, std::string*>*  settings = new std::map<std::string, std::string*>();
+
+	while(std::getline(fStrm, str)){
+		if (str.substr(0, 5) == "ResX=") {
+			(*settings).insert(std::pair<std::string, std::string*>("ResX", new std::string(str.substr(5))));
+		}
+		if (str.substr(0, 5) == "ResY=") {
+			(*settings).insert(std::pair<std::string, std::string*>("ResY", new std::string(str.substr(5))));
+		}
+		if (str.substr(0, 11) == "Fullscreen=") {
+			(*settings).insert(std::pair<std::string, std::string*>("Fullscreen", new std::string(str.substr(11))));
+		}
+
+	}
+	return *settings;
+	
+
+
+
 }

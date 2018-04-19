@@ -1,0 +1,5 @@
+ResX=700
+ResY=800
+
+set this equal to "True" to have the game open in fullscreen 
+Fullscreen=False

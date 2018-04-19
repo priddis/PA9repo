@@ -3,6 +3,7 @@
 #pragma once
 #include "header/GameState.h"
 #include "header/EventManager.h"
+#include <fstream>
 
 
 class Engine {
@@ -19,8 +20,13 @@ public:
 
 private:
 
+
+	std::map<std::string, std::string*> loadConfigFile();
+
 	GameState state;
 	sf::RenderWindow* window;
+
+
 	
 
 };
