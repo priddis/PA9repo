@@ -41,7 +41,4 @@ public:
 	std::list<sf::Sprite*>& getSprites();
 
 	KeyState & getKeys();
-
-	//tw. test adding a new tank unit to our spritelist
-	Tank* test_newTank();
 };

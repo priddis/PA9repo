@@ -20,12 +20,9 @@ GameState::GameState()
 	keys.lmb = false;
 	keys.a = false;
 
+	//this will be different when handling many textures.. data structure to hold it... but probably will exist here in a different form
 	texture_tank = new sf::Texture;
-
 	texture_tank->loadFromFile("assets/texture.png");
-
-	//this is for testing only.... i only want to create one new tank... not used to the (basically) infinite loop structure... needed to find a place that would only run once
-	test_newTank();
 }
 
 GameState::~GameState() {
@@ -49,28 +46,4 @@ std::list<sf::Sprite*>& GameState::getSprites()
 KeyState & GameState::getKeys()
 {
 	return keys;
-}
-
-//what would be the most appropriate class for a function that instantiates an object and puts it on the screen? gamestate? or elsewhere?
-//also this is just a sprite, and should be a derived unit class. that is the plan, just testing with sprite first and then moving to inherited unit class
-Tank* GameState::test_newTank()
-{
-	// Create a new sprite on the heap
-
-	Tank* pMem = new Tank(texture_tank, 1, 1);
-	//pMem->setTexture(texture_tank);
-	//set its default texture
-
-	//set defaults position. in the future maybe this takes a tile coordinate parameter to set pos. 
-	//pMem->setPosition(10, 10);
-
-	//setcolor temporarily while my loadtexture continues to fail....
-	//this used to work. no longer, meh.
-	//pMem->setColor(sf::Color(000, 200, 000, 200));
-
-	//add it to our Sprite list (testing functionality only)
-	spriteList.push_front(pMem);
-
-	//continuous drawing occurs in engine::drawsprites
-	return pMem;
 }
