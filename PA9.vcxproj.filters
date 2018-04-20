@@ -48,9 +48,6 @@
     <ClCompile Include="Unit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Downloads\board_test2_0\board_test2_0\board_test\main2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tileMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
