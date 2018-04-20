@@ -9,8 +9,10 @@ private:
 	sf::Sprite uiSprite;
 	sf::Texture* uiTexture; // Needed for the texture to exist.
 	int counter;
+	
 public:
 	UI(void) { counter = 0; };
+	UI(sf::Texture *texture);
 	UI(sf::Sprite Sprite);
 	UI(sf::Sprite Sprite, sf::Color Color);
 	UI(sf::Sprite Sprite, sf::Texture Texture);
