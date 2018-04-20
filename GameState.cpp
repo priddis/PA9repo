@@ -18,8 +18,8 @@ GameState::GameState()
 
 
 	//TODO: when tilemap is complete add code to get dimensions here
-	//mapSizeX = 
-	//mapSizeY = 
+	//int mapSizeX = 
+	//int mapSizeY = 
 
 
 
@@ -54,10 +54,23 @@ KeyState & GameState::getKeys()
 	return keys;
 }
 
-/*void GameState::attack(Unit & unit1, Unit & unit2){
-	unit2.getHP() -= unit1.getATK()
+//Unit1 is attacking unit2
 
-}*
+//TODO:
+//Death
+//not sure how to work in death yet
+//Current thoughts are that if current hp is set below zero, we delete the pointer but this could mess up later things
+void GameState::attack(Unit* unit1, Unit* unit2){
+
+
+	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
+
+	/*if(unit2->getCurrentHealth() <= 0){
+		delete unit2;
+	}
+	*/
+
+}
 
 /*void GameState::moveUnit(Unit & unit){
 

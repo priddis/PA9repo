@@ -8,6 +8,8 @@ and a struct for the keys being pressed
 #pragma once
 #include <list>
 #include <SFML/Graphics.hpp>
+#include "header/Unit.h"
+
 
 struct KeyState {
 
@@ -55,4 +57,6 @@ public:
 	KeyState & getKeys();
 
 	void endTurn();
+
+	void GameState::attack(Unit* unit1, Unit* unit2);
 };
