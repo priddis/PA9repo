@@ -31,6 +31,13 @@ private:
 	//struct of keys currently held down
 	KeyState keys;
 
+	std::map<std::string, sf::Texture*>* texMap;
+
+
+	//runs at launch, loads the all the texture files needed for sprites
+	//placed in gamestate for convenience
+	std::map<std::string, sf::Texture*>* loadTextureFiles();
+
 
 public:
 	GameState();
@@ -40,7 +47,7 @@ public:
 
 	std::list<sf::Sprite>* & getSprites();
 	std::vector<UI>* & getUIElements();
-	Cursor mainCursor;
+
 	KeyState & getKeys();
 
 	void endTurn();
