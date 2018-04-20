@@ -1,7 +1,6 @@
 //An engine object contains the main game loop and is where objects are rendered to the screen
 
 #include "header/Engine.h"
-#include "entities/include_entities.h"
 #include <string>
 #include <fstream>
 
