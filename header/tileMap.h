@@ -15,9 +15,12 @@ private:
 	std::vector<std::vector<tileInfo*> > map; 
 	int scale;
 
+	int maxX;
+	int maxY;
+
 public:
 	//takes a ref to the textureMap and will assign a local data mem ptr to it for use
-	tileMap(std::map<std::string, sf::Texture*>& textureMap, int in_scale = 1);
+	tileMap(std::map<std::string, sf::Texture*>*& textureMap, int in_scale = 1);
 	~tileMap();
 
 	bool openMap(std::string in_fileName);
@@ -26,5 +29,8 @@ public:
 
 	void setTileInfo(int x, int y, tileInfo* tileInfoPMem);
 	tileInfo* getTileInfo(int x, int y);
+
+	int getMaxX();
+	int getMaxY();
 
 };

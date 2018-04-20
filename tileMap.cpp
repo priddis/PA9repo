@@ -1,9 +1,9 @@
 #include "header/tileMap.h"
 
-tileMap::tileMap(std::map<std::string, sf::Texture*>& textureMap, int in_scale)
+tileMap::tileMap(std::map<std::string, sf::Texture*>*& textureMap, int in_scale)
 {
 	//error here. may go away once
-	textureMapPtr = *textureMap;
+	textureMapPtr = textureMap;
 	scale = in_scale;
 }
 
@@ -31,10 +31,14 @@ bool tileMap::openMap(std::string in_fileName)
 		success = true;
 		//first line has the x and y vals for total map size. here we set vector size
 		getline(fileOpener, x, ',');
+		//save this val for future use
+		maxX = atoi(x.c_str()); 
 		//could have my x's and y's mixed up, but they will be consistent. set one dimension to x
 		map.resize(atoi(x.c_str()));
 		//get y val
-		getline(fileOpener, y, ',');
+		getline(fileOpener, y); //no delim.. end of line
+		//save this val for future use
+		maxY = atoi(y.c_str());
 		//go down x dimension and set each vector's size to y
 		for (int i = 0; i < atoi(x.c_str()); ++i) map[i].resize(atoi(y.c_str()));
 		//now for the tileInfo lines
@@ -43,11 +47,11 @@ bool tileMap::openMap(std::string in_fileName)
 			getline(fileOpener, x, ',');
 			getline(fileOpener, y, ',');
 
-			getline(fileOpener, in_unitType);
+			getline(fileOpener, in_unitType, ',');
 			getline(fileOpener, in_team, ',');
 			allocUnitObj(unitPMem, in_unitType, in_team, scale);
 
-			getline(fileOpener, in_terrainType, ',');
+			getline(fileOpener, in_terrainType); //no delim end of line
 			allocTerrainObj(terrainPMem, in_terrainType, scale);
 
 			tileInfoPMem = new tileInfo(unitPMem, terrainPMem);
@@ -79,7 +83,7 @@ bool tileMap::allocTerrainObj(Terrain*& in_terrainPMem, std::string in_terrainTy
 	bool success = false;
 
 	if (in_terrainType == "Road") {
-		in_terrainPMem = new Road((*textureMapPtr)["Tank"], scale);
+		in_terrainPMem = new Road((*textureMapPtr)["Road"], scale);
 	}
 	//else ifs go here for additional terrains
 	
@@ -89,4 +93,11 @@ bool tileMap::allocTerrainObj(Terrain*& in_terrainPMem, std::string in_terrainTy
 
 void tileMap::setTileInfo(int x, int y, tileInfo* tileInfoPMem){
 	map[x][y] = tileInfoPMem;
+}
+
+int tileMap::getMaxX() {
+	return maxX;
+}
+int tileMap::getMaxY() {
+	return maxY;
 }

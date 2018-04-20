@@ -28,7 +28,7 @@ private:
 	GameState state;
 	sf::RenderWindow* window;
 
-
+	int tileSize = 100; //change this size later
 	
 
 };
