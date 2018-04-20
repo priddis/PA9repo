@@ -53,16 +53,18 @@ void Engine::drawSprites()
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::drawUIElements()
 {
-	for (UI element : *state.getUIElements()) {
-		window->draw(element);
+	for (UI* element : *state.getUIElements()) {
+		window->draw(*element);
 	}
+
 }
 
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::updateUI(KeyState &keys)
 {
-	for (int i = 0; i < state.getUIElements()->size(); i++)
-		state.getUIElements()->at(i).update(keys);
+	for (int i = 0; i < state.getUIElements()->size(); i++) {
+		state.getUIElements()->at(i)->update(keys);
+	}
 }
 
 //run() contains the main game loop

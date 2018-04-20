@@ -12,12 +12,12 @@ GameState::GameState()
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
-	uiList = new std::vector<UI>;
+	uiList = new std::vector<UI*>;
 	texMap = GameState::loadTextureFiles();
 
 	
 	// Cursor stuff
-	Cursor mainCursor(texMap->at("Cursor"));
+	Cursor* mainCursor = new Cursor(texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -58,7 +58,7 @@ std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
 }
 
-std::vector<UI>*& GameState::getUIElements() {
+std::vector<UI*>*& GameState::getUIElements() {
 	return uiList;
 }
 
