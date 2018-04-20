@@ -117,6 +117,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\Downloads\board_test2_0\board_test2_0\board_test\main2.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -126,6 +127,8 @@
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Terrain.cpp" />
+    <ClCompile Include="tileInfo.cpp" />
+    <ClCompile Include="tileMap.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
@@ -140,8 +143,13 @@
     <ClInclude Include="header\Road.h" />
     <ClInclude Include="header\Tank.h" />
     <ClInclude Include="header\Terrain.h" />
+    <ClInclude Include="header\tileInfo.h" />
+    <ClInclude Include="header\tileMap.h" />
+    <ClInclude Include="header\UI.h" />
     <ClInclude Include="header\Unit.h" />
-    <ClInclude Include="UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="maps\firstMap.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
