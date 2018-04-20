@@ -31,6 +31,7 @@ Engine::Engine() {
 		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!", sf::Style::Fullscreen);
 	}
 	window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!");
+	window->setFramerateLimit(60);
 }
 
 Engine::~Engine()

@@ -24,12 +24,15 @@ void UI::setTexture(sf::Texture* &Texture) {
 }
 
 void UI::update(KeyState &curState) {
-	if (curState.w)
-		uiSprite.move(0, -1);
-	if (curState.a)
-		uiSprite.move(-1, 0);
-	if (curState.s)
-		uiSprite.move(0, 1);
-	if (curState.d)
-		uiSprite.move(1, 0);
+	if (counter%5==0) {
+		if (curState.w)
+			uiSprite.move(0, -100);
+		if (curState.a)
+			uiSprite.move(-100, 0);
+		if (curState.s)
+			uiSprite.move(0, 100);
+		if (curState.d)
+			uiSprite.move(100, 0);
+	}
+	counter++;
 }
