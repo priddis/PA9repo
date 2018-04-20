@@ -12,16 +12,15 @@ GameState::GameState()
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
-	uiList = new std::vector<UI>;
+	uiList = new std::vector<UI*>;
 	texMap = GameState::loadTextureFiles();
 
 	//tile map stuff. future put in menu?
 	tileMapPtr = new tileMap(texMap, 1);
 	tileMapPtr->openMap("firstMap.txt");
 	
-	// Cursor stuff
-	//Cursor mainCursor(texMap->at("Cursor"));
-	//uiList->push_back(mainCursor);
+	Cursor* mainCursor = new Cursor(texMap->at("Cursor"));
+	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
 	//true = team1, false = team2
@@ -61,7 +60,7 @@ std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
 }
 
-std::vector<UI>*& GameState::getUIElements() {
+std::vector<UI*>*& GameState::getUIElements() {
 	return uiList;
 }
 

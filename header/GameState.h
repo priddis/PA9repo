@@ -20,7 +20,7 @@ private:
 
 	//list of sprites to display to the screen
 	std::list<sf::Sprite>* spriteList;
-	std::vector<UI>* uiList;
+	std::vector<UI*>* uiList;
 
 	bool currentPlayer;
 	int turnCounter;
@@ -49,7 +49,7 @@ public:
 	tileMap*& getTileMap(); //should be const
 
 	std::list<sf::Sprite>* & getSprites();
-	std::vector<UI>* & getUIElements();
+	std::vector<UI*>* & getUIElements();
 
 	KeyState & getKeys();
 
