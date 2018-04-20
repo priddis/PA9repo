@@ -12,6 +12,7 @@ and a struct for the keys being pressed
 #include "header/Unit.h"
 #include "header/Cursor.h"
 #include "KeyState.h"
+#include "tileMap.h"
 
 class GameState{
 
@@ -32,7 +33,7 @@ private:
 	KeyState keys;
 
 	std::map<std::string, sf::Texture*>* texMap;
-
+	tileMap* tileMapPtr;
 
 	//runs at launch, loads the all the texture files needed for sprites
 	//placed in gamestate for convenience
@@ -44,6 +45,8 @@ public:
 	~GameState();
 
 	void update();
+	//for access in engine currently
+	tileMap*& getTileMap(); //should be const
 
 	std::list<sf::Sprite>* & getSprites();
 	std::vector<UI>* & getUIElements();

@@ -15,10 +15,13 @@ GameState::GameState()
 	uiList = new std::vector<UI>;
 	texMap = GameState::loadTextureFiles();
 
+	//tile map stuff. future put in menu?
+	tileMapPtr = new tileMap(texMap, 1);
+	tileMapPtr->openMap("firstMap.txt");
 	
 	// Cursor stuff
-	Cursor mainCursor(texMap->at("Cursor"));
-	uiList->push_back(mainCursor);
+	//Cursor mainCursor(texMap->at("Cursor"));
+	//uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
 	//true = team1, false = team2
@@ -119,4 +122,8 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 
 
 	return textureMap;
+}
+
+tileMap*& GameState::getTileMap() {
+	return tileMapPtr;
 }

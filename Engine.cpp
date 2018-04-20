@@ -45,8 +45,27 @@ Engine::~Engine()
 //iterates through the list of sprites and draws each one to the screen
 void Engine::drawSprites()
 {
-	for (sf::Sprite spr : *state.getSprites() ) {
-		window->draw(spr);
+	tileInfo* tempTileInfo = nullptr;
+	Terrain* tempTerrain = nullptr;
+	Unit* tempUnit = nullptr;
+	int i = 0;
+	int j = 0;
+	//getting access to the tile map that resides in gamestate. ref!
+	tileMap* tileMapPtr = state.getTileMap();
+
+	for (i = 0; i < tileMapPtr->getMaxX(); i++) {
+
+		for (j = 0; j < tileMapPtr->getMaxY(); j++) {
+			tempTileInfo = tileMapPtr->getTileInfo(i, j);
+			tempTerrain = tempTileInfo->getTerrainPtr();
+			tempUnit = tempTileInfo->getUnitPtr();
+			tempTerrain->setPosition(i * tileSize, j * tileSize);
+			window->draw(*tempTerrain);
+			tempUnit->setPosition(i * tileSize, j * tileSize);
+			window->draw(*tempUnit); //remember to add nullptr handling
+
+
+		}
 	}
 }
 
