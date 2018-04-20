@@ -5,7 +5,7 @@
 
 Engine::Engine() {
 
-	window = new sf::RenderWindow(sf::VideoMode(800, 800), "SFML works!");
+	window = new sf::RenderWindow(sf::VideoMode(800, 800), "SFML works!");	
 }
 
 Engine::~Engine()
