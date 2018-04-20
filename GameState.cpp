@@ -13,8 +13,11 @@ GameState::GameState()
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
 	uiList = new std::vector<UI>;
+	texMap = GameState::loadTextureFiles();
 
+	
 	// Cursor stuff
+	Cursor mainCursor(texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -98,3 +101,22 @@ void GameState::endTurn() {
 	}
 }
 
+
+//runs at launch, loads the all the texture files needed for sprites
+std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
+{
+
+	std::map<std::string, sf::Texture*>* textureMap = new std::map<std::string, sf::Texture*>();
+
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Cursor", new sf::Texture()));
+	textureMap->at("Cursor")->loadFromFile("assets/cursor.png");
+
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Tank", new sf::Texture()));
+	textureMap->at("Tank")->loadFromFile("assets/Tank.png");
+
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Road", new sf::Texture()));
+	textureMap->at("Road")->loadFromFile("assets/Road.png");
+
+
+	return textureMap;
+}
