@@ -17,7 +17,7 @@ public:
 	void removeSprite(sf::Sprite* &deleteSprite);
 
 	void drawUI();
-	void updateUI();
+	void updateUI(KeyState &curState);
 	void run();
 
 private:

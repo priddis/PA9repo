@@ -9,10 +9,10 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 
 GameState::GameState()
 {
-	Cursor Cursor;
-	spriteList = new std::list<sf::Sprite>;
-	uiList = new std::list<UI>;
-	uiList->push_back(Cursor);
+	Cursor cursor;
+	spriteList = new std::vector<sf::Sprite>;
+	uiList = new std::vector<UI>;
+	uiList->push_back(cursor);
 
 	keys.rmb = false;
 	keys.lmb = false;
@@ -34,11 +34,11 @@ GameState::~GameState() {
 	delete spriteList;
 }
 
-std::list<UI>* & GameState::getUIElements() {
+std::vector<UI>* & GameState::getUIElements() {
 	return uiList;
 }
 
-std::list<sf::Sprite>*& GameState::getSprites()
+std::vector<sf::Sprite>*& GameState::getSprites()
 {
 	return spriteList;
 }

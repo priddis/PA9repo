@@ -22,3 +22,14 @@ void UI::setTexture(sf::Texture* &Texture) {
 	uiTexture = Texture;
 	uiSprite.setTexture(*uiTexture);
 }
+
+void UI::update(KeyState &curState) {
+	if (curState.w)
+		uiSprite.move(0, -1);
+	if (curState.a)
+		uiSprite.move(-1, 0);
+	if (curState.s)
+		uiSprite.move(0, 1);
+	if (curState.d)
+		uiSprite.move(1, 0);
+}

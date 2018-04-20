@@ -5,30 +5,18 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 */
  
 #pragma once
-#include <list>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "Cursor.h"
-
-struct KeyState {
-	bool lmb;
-	bool rmb;
-
-	bool a;
-	bool d;
-	bool w;
-	bool s;
-
-	bool space;
-	bool lshift;
-};
+#include "KeyState.h"
 
 class GameState{
 
 private:
 
 	//list of sprites to display to the screen
-	std::list<sf::Sprite>* spriteList;
-	std::list<UI>* uiList;
+	std::vector<sf::Sprite>* spriteList;
+	std::vector<UI>* uiList;
 	
 	//list of keys currently held down
 	KeyState keys;
@@ -38,8 +26,8 @@ public:
 	GameState();
 	~GameState();
 
-	std::list<sf::Sprite>* & getSprites();
-	std::list<UI>* & getUIElements();
+	std::vector<sf::Sprite>* & getSprites();
+	std::vector<UI>* & getUIElements();
 
 	void addUI(UI &newUI);
 

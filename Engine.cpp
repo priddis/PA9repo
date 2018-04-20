@@ -24,15 +24,15 @@ void Engine::drawSprites()
 //iterates through the list of UI and draws each one to the screen
 void Engine::drawUI()
 {
-	for (UI uiElement : *state.getUIElements()) {
-		window->draw(uiElement);
+	for (int i = 0; i < state.getUIElements()->size(); i++) {
+		window->draw(state.getUIElements()->at(i));
 	}
 }
 
-void Engine::updateUI()
+void Engine::updateUI(KeyState &curState)
 {
-	for (UI uiElement : *state.getUIElements()) {
-		uiElement.update();
+	for (int i = 0; i < state.getUIElements()->size(); i++) {
+		state.getUIElements()->at(i).update(curState);
 	}
 }
 
@@ -58,7 +58,7 @@ void Engine::run() {
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
-		updateUI();
+		updateUI(state.getKeys());
 		drawUI();
 		window->display();
 	}

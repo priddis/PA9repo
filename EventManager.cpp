@@ -10,7 +10,7 @@ namespace EventManager {
 	//the handleEvent function looks at the event and determines what functions to call based on that event
 	void handleEvent(sf::Event & ev, KeyState &keys)
 	{
-
+		
 		//key presses
 		if (ev.type == sf::Event::KeyPressed) {
 			if (ev.key.code == sf::Keyboard::A) {
@@ -90,6 +90,7 @@ namespace EventManager {
 		keys.d = false;
 	}
 	void dKeyDown(KeyState &keys) {
+		std::cout << "pressed d";
 		keys.d = true;
 	}
 	void wKeyUp(KeyState & keys){
