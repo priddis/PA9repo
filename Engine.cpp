@@ -54,12 +54,17 @@ void Engine::drawUIElements()
 	}
 }
 
+//iterates through the list of UI elements and draws each one to the screen
+void Engine::updateUI(KeyState &keys)
+{
+	for (int i = 0; i < state.getUIElements()->size(); i++)
+		state.getUIElements()->at(i).update(keys);
+}
 
 //run() contains the main game loop
 //this is where events are handled through the event handler
 //and this is where sprites are drawn
 void Engine::run() {
-
 	sf::Event event;
 
 	//main game loop. one pass through this is one frame
@@ -79,6 +84,7 @@ void Engine::run() {
 		//clear the screen in order to render the next frame
 		window->clear();
 		drawSprites();
+		updateUI(state.getKeys());
 		drawUIElements();
 		window->display();
 	}

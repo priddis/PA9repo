@@ -7,6 +7,7 @@ and a struct for the keys being pressed
  
 #pragma once
 #include <list>
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include "header/Unit.h"
 #include "header/Cursor.h"
@@ -18,7 +19,7 @@ private:
 
 	//list of sprites to display to the screen
 	std::list<sf::Sprite>* spriteList;
-	std::list<UI>* uiList;
+	std::vector<UI>* uiList;
 
 	bool currentPlayer;
 	int turnCounter;
@@ -38,8 +39,8 @@ public:
 	void update();
 
 	std::list<sf::Sprite>* & getSprites();
-	std::list<UI>* & getUIElements();
-
+	std::vector<UI>* & getUIElements();
+	Cursor mainCursor;
 	KeyState & getKeys();
 
 	void endTurn();

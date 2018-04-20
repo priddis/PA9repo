@@ -12,10 +12,9 @@ GameState::GameState()
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
-	uiList = new std::list<UI>;
+	uiList = new std::vector<UI>;
 
 	// Cursor stuff
-	Cursor mainCursor;
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -56,7 +55,7 @@ std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
 }
 
-std::list<UI>*& GameState::getUIElements() {
+std::vector<UI>*& GameState::getUIElements() {
 	return uiList;
 }
 

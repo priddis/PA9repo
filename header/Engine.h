@@ -15,6 +15,7 @@ public:
 
 	void drawSprites();
 	void drawUIElements();
+	void updateUI(KeyState &keys);
 	void addSprite(sf::Sprite &newSprite);
 	void removeSprite(sf::Sprite* &deleteSprite);
 	void run();
