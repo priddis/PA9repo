@@ -14,6 +14,7 @@ public:
 	~Engine();
 
 	void drawSprites();
+	void drawUIElements();
 	void addSprite(sf::Sprite &newSprite);
 	void removeSprite(sf::Sprite* &deleteSprite);
 	void run();

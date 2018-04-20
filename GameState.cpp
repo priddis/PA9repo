@@ -9,7 +9,14 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 
 GameState::GameState()
 {
+
+	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
+	uiList = new std::list<UI>;
+
+	// Cursor stuff
+	Cursor mainCursor;
+	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
 	//true = team1, false = team2
@@ -47,6 +54,10 @@ GameState::~GameState() {
 
 std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
+}
+
+std::list<UI>*& GameState::getUIElements() {
+	return uiList;
 }
 
 KeyState & GameState::getKeys()

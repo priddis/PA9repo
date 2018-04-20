@@ -17,3 +17,7 @@ PA9.VC.db
 PA9.VC.VC.opendb
 .vs/PA9/v14/.suo
 .vs/PA9/v14/.suo
+PA9.vcxproj
+PA9.vcxproj
+*.vcxproj
+*.filters

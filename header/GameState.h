@@ -9,23 +9,8 @@ and a struct for the keys being pressed
 #include <list>
 #include <SFML/Graphics.hpp>
 #include "header/Unit.h"
-
-
-struct KeyState {
-
-	bool lmb;
-	bool rmb;
-
-	bool a;
-	bool d;
-	bool w;
-	bool s;
-
-	bool space;
-	bool lshift;
-	
-
-};
+#include "header/Cursor.h"
+#include "KeyState.h"
 
 class GameState{
 
@@ -33,6 +18,7 @@ private:
 
 	//list of sprites to display to the screen
 	std::list<sf::Sprite>* spriteList;
+	std::list<UI>* uiList;
 
 	bool currentPlayer;
 	int turnCounter;
@@ -52,7 +38,7 @@ public:
 	void update();
 
 	std::list<sf::Sprite>* & getSprites();
-	//std::list<UI>* & getUIElements();
+	std::list<UI>* & getUIElements();
 
 	KeyState & getKeys();
 
