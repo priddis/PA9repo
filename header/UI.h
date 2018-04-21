@@ -6,9 +6,7 @@
 class UI : public sf::Drawable
 {
 private:
-	sf::Sprite uiSprite;
-	sf::Texture* uiTexture; // Needed for the texture to exist.
-	int counter;
+	
 	
 public:
 	UI(void) { counter = 0; };
@@ -17,11 +15,14 @@ public:
 	UI(sf::Sprite Sprite, sf::Color Color);
 	UI(sf::Sprite Sprite, sf::Texture Texture);
 
-	void update(KeyState &curState);
+	virtual void update(KeyState &curState);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 protected:
 
 	// Set
 	void UI::setTexture(sf::Texture* &Texture);
+	sf::Sprite uiSprite;
+	sf::Texture* uiTexture; // Needed for the texture to exist.
+	int counter;
 };
