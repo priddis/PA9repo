@@ -33,3 +33,7 @@ void UI::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 void UI::setTexture(sf::Texture* &texture) {
 	uiSprite.setTexture(*texture);
 }
+
+void UI::update(KeyState &curState) {
+
+}
