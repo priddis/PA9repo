@@ -22,13 +22,9 @@ UI::UI(sf::Sprite Sprite) {
 	uiSprite = Sprite;
 }
 
-
-
 void UI::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(uiSprite, states);
 }
-
-
 
 void UI::setTexture(sf::Texture* &texture) {
 	uiSprite.setTexture(*texture);

@@ -72,7 +72,9 @@ bool tileMap::allocUnitObj(Unit*& in_unitPMem, std::string in_unitType, std::str
 		in_unitPMem = new Tank((*textureMapPtr)["Tank"], atoi(team.c_str()), scale);
 		
 	}
-	//else ifs go here for additional units
+	//additional else ifs go here for additional units
+	//if its null or invalid/nonexistant unit then its a nullptr
+	else in_unitPMem = nullptr;
 
 	if (in_unitPMem != nullptr) success = true;
 	return success;
@@ -86,7 +88,9 @@ bool tileMap::allocTerrainObj(Terrain*& in_terrainPMem, std::string in_terrainTy
 		in_terrainPMem = new Road((*textureMapPtr)["Road"], scale);
 	}
 	//else ifs go here for additional terrains
-	
+	//if its null or invalid/nonexistant unit then its a nullptr
+	else in_terrainPMem = nullptr;
+
 	if (in_terrainPMem != nullptr) success = true;
 	return success;
 }

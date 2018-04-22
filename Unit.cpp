@@ -13,6 +13,7 @@ Unit::Unit(sf::Texture* in_texture, int in_team, float in_scale)
 
 Unit::~Unit()
 {
+	//no dynam mem ..yet at least
 }
 
 //****getters
