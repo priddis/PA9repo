@@ -10,7 +10,7 @@ class Tank :
 {
 public:
 	Tank(sf::Texture* in_texture, int in_team, float in_scale);
-	~Tank(); //no dynam mem
+	virtual ~Tank(); //no dynam mem
 
 	//add any unique functions for a tank here..
 	void reduceHealthAttacked(int in_damage, std::string attackerUnitType);

@@ -9,6 +9,16 @@ tileMap::tileMap(std::map<std::string, sf::Texture*>*& textureMap, int in_scale)
 
 tileMap::~tileMap()
 {
+	int x, y;
+	for (x = 0; x < getMaxX(); x++) {
+
+		for (y = 0; y < getMaxY(); y++) {
+			//tileInfo should never be nullptr for an existing tileMap coordinate, but being safe
+			if (map[x][y] != nullptr) {
+				delete map[x][y];
+			}
+		}
+	}
 }
 
 tileInfo* tileMap::getTileInfo(int x, int y) {
