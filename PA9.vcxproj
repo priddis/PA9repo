@@ -120,6 +120,8 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="UI.cpp" />
+    <ClCompile Include="why.cpp" />
+    <ClCompile Include="why2_0.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="entities\include_entities.h" />
@@ -127,6 +129,8 @@
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />
     <ClInclude Include="UI.h" />
+    <ClInclude Include="why.h" />
+    <ClInclude Include="why2_0.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

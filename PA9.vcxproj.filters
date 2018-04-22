@@ -30,6 +30,12 @@
     <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="why.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="why2_0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\Engine.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="why.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="why2_0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
