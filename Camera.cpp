@@ -61,3 +61,13 @@ int Camera::getCamHeight()
 {
 	return pos.height;
 }
+
+int Camera::getCamX()
+{
+	return pos.topLeftX;
+}
+
+int Camera::getCamY()
+{
+	return pos.topLeftY;
+}
