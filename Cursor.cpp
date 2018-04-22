@@ -16,17 +16,20 @@ Cursor::Cursor(int tileSize,  sf::Texture * inTex) : UI(inTex)
 	tSize = tileSize;
 }
 
-void Cursor::update(KeyState &curState) {
+void Cursor::update(KeyState &curState, Camera* cam) {
 	if (counter % 8 == 0) {
-		if (curState.w)
+		if (curState.w) {
 			uiSprite.move(0, -tSize);
-		if (curState.a)
+		}
+		if (curState.a) {
 			uiSprite.move(-tSize, 0);
+		}
 		if (curState.s) {
 			uiSprite.move(0, tSize);
 		}
-		if (curState.d)
+		if (curState.d) {
 			uiSprite.move(tSize, 0);
+		}
 	}
 	counter++;
 }
