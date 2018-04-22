@@ -23,7 +23,7 @@ public:
 	//all units take a starting texture. scale will most likely be necessary, but will have a default val of 1 until we know appropriate size.
 	//team is always needed upon initialization
 	Unit(sf::Texture* in_texture, int in_team, float in_scale = 1);
-	virtual ~Unit() = 0;
+	virtual ~Unit();
 
 	//future game design ideas
 	//selectionSound() like "sir!" or "yeah boss?"

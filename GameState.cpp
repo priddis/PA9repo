@@ -52,8 +52,8 @@ GameState::~GameState() {
 
 	spriteList->clear();
 
-
 	delete spriteList;
+	delete tileMapPtr;
 }
 
 std::list<sf::Sprite>*& GameState::getSprites(){
