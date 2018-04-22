@@ -7,6 +7,8 @@
 Engine::Engine() {
 
 	
+	
+
 	std::map<std::string, std::string*> settings = loadConfigFile();
 
 	//declaring window settings and setting their defaults in case they are not defined in config.txt
@@ -18,7 +20,7 @@ Engine::Engine() {
 	if (settings.count("ResX")) {
 		ResolutionX = std::stoi(*settings.at("ResX"));
 	}
-	if (settings.count("RexY")) {
+	if (settings.count("ResY")) {
 		ResolutionY = std::stoi(*settings.at("ResY"));
 	}
 	if (settings.count("Fullscreen")) {
@@ -35,15 +37,18 @@ Engine::Engine() {
 	}
 	window->setFramerateLimit(60);
 	
+
+	state = new GameState(tileSize, ResolutionX, ResolutionY);
+	
 }
 
 Engine::~Engine()
 {
-
+	delete state;
 }
 
 //iterates through the list of sprites and draws each one to the screen
-void Engine::drawSprites()
+void Engine::drawSprites(Camera* cam)
 {
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
@@ -51,11 +56,12 @@ void Engine::drawSprites()
 	int i = 0;
 	int j = 0;
 	//getting access to the tile map that resides in gamestate. ref!
-	tileMap* tileMapPtr = state.getTileMap();
+	tileMap* tileMapPtr = state->getTileMap();
 
-	for (i = 0; i < tileMapPtr->getMaxX(); i++) {
+	for (i = 0; i < cam->getCamWidth(); i++) {
 
-		for (j = 0; j < tileMapPtr->getMaxY(); j++) {
+		for (j = 0; j < cam->getCamHeight(); j++) {
+
 			tempTileInfo = tileMapPtr->getTileInfo(i, j);
 			tempTerrain = tempTileInfo->getTerrainPtr();
 			tempUnit = tempTileInfo->getUnitPtr();
@@ -72,7 +78,7 @@ void Engine::drawSprites()
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::drawUIElements()
 {
-	for (UI* element : *state.getUIElements()) {
+	for (UI* element : *(state->getUIElements() ) ) {
 		window->draw(*element);
 	}
 
@@ -81,8 +87,8 @@ void Engine::drawUIElements()
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::updateUI(KeyState &keys)
 {
-	for (int i = 0; i < state.getUIElements()->size(); i++) {
-		state.getUIElements()->at(i)->update(keys);
+	for (int i = 0; i < state->getUIElements()->size(); i++) {
+		state->getUIElements()->at(i)->update(keys);
 	}
 }
 
@@ -102,14 +108,14 @@ void Engine::run() {
 				window->close();
 			}
 			else {
-				EventManager::handleEvent(event,state.getKeys());
+				EventManager::handleEvent(event,state->getKeys());
 			}
 			
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
-		drawSprites();
-		updateUI(state.getKeys());
+		drawSprites(state->getCamera());
+		updateUI(state->getKeys());
 		drawUIElements();
 		window->display();
 	}
