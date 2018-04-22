@@ -51,3 +51,13 @@ void Camera::moveCamera(int xOffset, int yOffset)
 		pos.bottomRightY = pos.height;
 	}
 }
+
+int Camera::getCamWidth()
+{
+	return pos.width;
+}
+
+int Camera::getCamHeight()
+{
+	return pos.height;
+}

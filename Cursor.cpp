@@ -11,21 +11,22 @@ Cursor::Cursor(void) {
 	setTexture(pTexture);
 }
 
-Cursor::Cursor(sf::Texture * inTex) : UI(inTex)
+Cursor::Cursor(int tileSize,  sf::Texture * inTex) : UI(inTex)
 {
-
+	tSize = tileSize;
 }
 
 void Cursor::update(KeyState &curState) {
-	if (counter % 5 == 0) {
+	if (counter % 8 == 0) {
 		if (curState.w)
-			uiSprite.move(0, -100);
+			uiSprite.move(0, -tSize);
 		if (curState.a)
-			uiSprite.move(-100, 0);
-		if (curState.s)
-			uiSprite.move(0, 100);
+			uiSprite.move(-tSize, 0);
+		if (curState.s) {
+			uiSprite.move(0, tSize);
+		}
 		if (curState.d)
-			uiSprite.move(100, 0);
+			uiSprite.move(tSize, 0);
 	}
 	counter++;
 }

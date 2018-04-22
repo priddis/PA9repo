@@ -4,9 +4,11 @@
 class Cursor : public UI {
 private:
 
+	int tSize;
+
 
 public:
-	Cursor(void);
-	Cursor(sf::Texture* inTex);
+	Cursor();
+	Cursor(int tileSize, sf::Texture* inTex);
 	void update(KeyState &curState);
 };

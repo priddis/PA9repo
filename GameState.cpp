@@ -9,6 +9,11 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 
 GameState::GameState()
 {
+}
+
+GameState::GameState(int newTileSize, int ResX, int ResY)
+{
+	tileSize = newTileSize;
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
@@ -19,7 +24,8 @@ GameState::GameState()
 	tileMapPtr = new tileMap(texMap, 1);
 	tileMapPtr->openMap("firstMap.txt");
 	
-	Cursor* mainCursor = new Cursor(texMap->at("Cursor"));
+	//Cursor initialization
+	Cursor* mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -28,11 +34,7 @@ GameState::GameState()
 	turnCounter = 1;
 
 
-	//TODO: when tilemap is complete add code to get dimensions here
-	//int mapSizeX = 
-	//int mapSizeY = 
-
-
+	cam = new Camera(ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX(), tileMapPtr->getMaxY());
 
 	//key assignments, by default all keys are set to false
 	//false = key up, true = key down
@@ -46,6 +48,8 @@ GameState::GameState()
 
 	keys.space = false;
 	keys.lshift = false;
+
+	
 }
 
 GameState::~GameState() {
@@ -87,6 +91,11 @@ void GameState::attack(Unit* unit1, Unit* unit2){
 
 }
 
+Camera * GameState::getCamera()
+{
+	return cam;
+}
+
 /*void GameState::moveUnit(Unit & unit){
 
 	
@@ -101,6 +110,13 @@ void GameState::endTurn() {
 	if (currentPlayer) {
 		turnCounter++;
 	}
+}
+
+void GameState::setTileSize(int newSize)
+{
+
+	tileSize = newSize;
+	std::cout << "\n new tilesize: " << newSize;
 }
 
 

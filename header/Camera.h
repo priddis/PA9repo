@@ -25,4 +25,6 @@ public:
 
 	void moveCamera(int xOffset, int yOffset);
 
+	int getCamWidth();
+	int getCamHeight();
 };
