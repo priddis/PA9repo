@@ -58,9 +58,9 @@ void Engine::drawSprites(Camera* cam)
 	//getting access to the tile map that resides in gamestate. ref!
 	tileMap* tileMapPtr = state->getTileMap();
 
-	for (i = 0; i < cam->getCamWidth(); i++) {
+	for (i = cam->getCamX(); i < cam->getCamX() + cam->getCamWidth(); i++) {
 
-		for (j = 0; j < cam->getCamHeight(); j++) {
+		for (j = cam->getCamY(); j < cam->getCamY() + cam->getCamHeight(); j++) {
 
 			tempTileInfo = tileMapPtr->getTileInfo(i, j);
 			tempTerrain = tempTileInfo->getTerrainPtr();
@@ -91,7 +91,7 @@ void Engine::drawUIElements()
 void Engine::updateUI(KeyState &keys)
 {
 	for (int i = 0; i < state->getUIElements()->size(); i++) {
-		state->getUIElements()->at(i)->update(keys);
+		state->getUIElements()->at(i)->update(keys, state->getCamera());
 	}
 }
 
