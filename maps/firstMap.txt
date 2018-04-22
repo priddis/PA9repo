@@ -1,9 +1,9 @@
 3,3
 0,0,Tank,1,Road
-0,1,Tank,1,Road
+0,1,,,Road
 0,2,Tank,1,Road
 1,0,Tank,1,Road
-1,1,Tank,1,Road
+1,1,Tank,1,
 1,2,Tank,1,Road
 2,0,Tank,1,Road
 2,1,Tank,1,Road

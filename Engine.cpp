@@ -59,11 +59,14 @@ void Engine::drawSprites()
 			tempTileInfo = tileMapPtr->getTileInfo(i, j);
 			tempTerrain = tempTileInfo->getTerrainPtr();
 			tempUnit = tempTileInfo->getUnitPtr();
-			tempTerrain->setPosition(i * tileSize, j * tileSize);
-			window->draw(*tempTerrain);
-			tempUnit->setPosition(i * tileSize, j * tileSize);
-			window->draw(*tempUnit); //remember to add nullptr handling
-
+			if (tempTerrain != nullptr) {
+				tempTerrain->setPosition(i * tileSize, j * tileSize);
+				window->draw(*tempTerrain);
+			}
+			if (tempUnit != nullptr) {
+				tempUnit->setPosition(i * tileSize, j * tileSize);
+				window->draw(*tempUnit); //remember to add nullptr handling
+			}
 
 		}
 	}
