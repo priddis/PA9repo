@@ -123,6 +123,7 @@
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MOVEHIGHLIGHT.CPP" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Terrain.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />
     <ClInclude Include="header\KeyState.h" />
+    <ClInclude Include="header\MoveHighlight.h" />
     <ClInclude Include="header\Road.h" />
     <ClInclude Include="header\Tank.h" />
     <ClInclude Include="header\Terrain.h" />
