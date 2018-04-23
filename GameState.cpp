@@ -23,6 +23,9 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	//tile map stuff. future put in menu?
 	tileMapPtr = new tileMap(texMap, 1);
 	tileMapPtr->openMap("firstMap.txt");
+
+	//testing tilemap
+	//tileMapPtr->getTileInfo(19, 19)->getTerrainPtr();
 	
 	//Cursor initialization
 	Cursor* mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
@@ -34,7 +37,8 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	turnCounter = 1;
 
 
-	cam = new Camera(ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX(), tileMapPtr->getMaxY());
+
+	cam = new Camera( ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX() , tileMapPtr->getMaxY());
 
 	//key assignments, by default all keys are set to false
 	//false = key up, true = key down

@@ -50,6 +50,8 @@ Engine::~Engine()
 //iterates through the list of sprites and draws each one to the screen
 void Engine::drawSprites(Camera* cam)
 {
+
+
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
 	Unit* tempUnit = nullptr;
@@ -58,15 +60,17 @@ void Engine::drawSprites(Camera* cam)
 	//getting access to the tile map that resides in gamestate. ref!
 	tileMap* tileMapPtr = state->getTileMap();
 
-	for (i = cam->getCamX(); i < cam->getCamX() + cam->getCamWidth(); i++) {
+	for (i = 0; i < cam->getCamWidth(); i++) {
 
-		for (j = cam->getCamY(); j < cam->getCamY() + cam->getCamHeight(); j++) {
+		for (j = 0; j < cam->getCamHeight(); j++) {
+			//printing for testing purposes
+			//std::cout << i + cam->getCamX() << " " << j + cam->getCamY() << std::endl;
 
-			tempTileInfo = tileMapPtr->getTileInfo(i, j);
+			tempTileInfo = tileMapPtr->getTileInfo(i + cam->getCamX(), j + cam->getCamY());
 			tempTerrain = tempTileInfo->getTerrainPtr();
 			tempUnit = tempTileInfo->getUnitPtr();
 			if (tempTerrain != nullptr) {
-				tempTerrain->setPosition(i * tileSize, j * tileSize);
+				tempTerrain->setPosition(i  * tileSize, j * tileSize);
 				window->draw(*tempTerrain);
 			}
 			if (tempUnit != nullptr) {

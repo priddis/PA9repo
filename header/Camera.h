@@ -29,4 +29,6 @@ public:
 	int getCamHeight();
 	int getCamX();
 	int getCamY();
+	int getMaxX();
+	int getMaxY();
 };
