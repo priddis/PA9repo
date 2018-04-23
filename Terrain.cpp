@@ -5,7 +5,7 @@
 #include "header/Terrain.h"
 
 
-Terrain::Terrain(sf::Texture* in_texture, float in_scale)
+Terrain::Terrain(sf::Texture*& in_texture, float in_scale)
 	: sf::Sprite(*in_texture)
 {
 	this->setScale(in_scale, in_scale);

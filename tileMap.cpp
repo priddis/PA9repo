@@ -31,6 +31,9 @@ bool tileMap::openMap(std::string in_fileName)
 	Unit* unitPMem = nullptr;
 	Terrain* terrainPMem = nullptr;
 	tileInfo* tileInfoPMem = nullptr;
+	sf::Texture* unitTexPMem = nullptr;
+	sf::Texture* terrainTexPMem = nullptr;
+
 
 	std::string mapFilePath = "maps/" + in_fileName;
 	std::string x, y, in_unitType, in_terrainType, in_team;
@@ -53,20 +56,34 @@ bool tileMap::openMap(std::string in_fileName)
 		for (int i = 0; i < atoi(x.c_str()); ++i) map[i].resize(atoi(y.c_str()));
 		//now for the tileInfo lines
 		while (!fileOpener.eof())
-		{
+		{	
+			//get our x and y coords for inserting future tileInfo into our map
 			getline(fileOpener, x, ',');
 			getline(fileOpener, y, ',');
 
+			//getting unit info and calling func to dynam alloc new unit. unitPMem pts to this once completed
 			getline(fileOpener, in_unitType, ',');
+			unitTexPMem = textureMapPtr->at(in_unitType.c_str()); 
 			getline(fileOpener, in_team, ',');
-			allocUnitObj(unitPMem, in_unitType, in_team, scale);
+			allocUnitObj(unitPMem, unitTexPMem, in_unitType, atoi(in_team.c_str()), scale);
 
+			//getting unit info and calling func to dynam alloc new unit. unitPMem pts to this once completed
 			getline(fileOpener, in_terrainType); //no delim end of line
-			allocTerrainObj(terrainPMem, in_terrainType, scale);
+			terrainTexPMem = textureMapPtr->at(in_terrainType.c_str()); 
+			allocTerrainObj(terrainPMem, terrainTexPMem, in_terrainType, scale);
 
+			//create new tile dynamically with our new unit and texture objects (if they exist.. null is an option too)
 			tileInfoPMem = new tileInfo(unitPMem, terrainPMem);
 
+			//insert the new tileInfo in the right coordinate in our map
 			setTileInfo(atoi(x.c_str()), atoi(y.c_str()), tileInfoPMem);
+
+			//may be unnecessary. check. wont hurt though.
+			Unit* unitPMem = nullptr;
+			Terrain* terrainPMem = nullptr;
+			tileInfo* tileInfoPMem = nullptr;
+			sf::Texture* unitTexPMem = nullptr;
+			sf::Texture* terrainTexPMem = nullptr;
 		}
 	}
 
@@ -74,13 +91,17 @@ bool tileMap::openMap(std::string in_fileName)
 	return success;
 }
 
-bool tileMap::allocUnitObj(Unit*& in_unitPMem, std::string in_unitType, std::string team, int scale) {
+//as we add additional units. update functionality here!
+bool tileMap::allocUnitObj(Unit*& in_unitPMem, sf::Texture*& texturePMem, std::string in_unitType, int team, int scale) {
 	in_unitPMem = nullptr;
 	bool success = false;
 
 	if (in_unitType == "Tank") {
-		in_unitPMem = new Tank((*textureMapPtr)["Tank"], atoi(team.c_str()), scale);
+		in_unitPMem = new Tank(texturePMem, team, scale);
 		
+	}
+	else if (in_unitType == "Soldier") {
+		in_unitPMem = new Soldier(texturePMem, team, scale);
 	}
 	//additional else ifs go here for additional units
 	//if its null or invalid/nonexistant unit then its a nullptr
@@ -90,12 +111,12 @@ bool tileMap::allocUnitObj(Unit*& in_unitPMem, std::string in_unitType, std::str
 	return success;
 }
 
-bool tileMap::allocTerrainObj(Terrain*& in_terrainPMem, std::string in_terrainType, int scale) {
+bool tileMap::allocTerrainObj(Terrain*& in_terrainPMem, sf::Texture*& texturePMem, std::string in_terrainType, int scale) {
 	in_terrainPMem = nullptr;
 	bool success = false;
 
 	if (in_terrainType == "Road") {
-		in_terrainPMem = new Road((*textureMapPtr)["Road"], scale);
+		in_terrainPMem = new Road(texturePMem, scale);
 	}
 	//else ifs go here for additional terrains
 	//if its null or invalid/nonexistant unit then its a nullptr

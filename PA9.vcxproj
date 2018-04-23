@@ -124,6 +124,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Road.cpp" />
+    <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="tileInfo.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="header\GameState.h" />
     <ClInclude Include="header\KeyState.h" />
     <ClInclude Include="header\Road.h" />
+    <ClInclude Include="header\Soldier.h" />
     <ClInclude Include="header\Tank.h" />
     <ClInclude Include="header\Terrain.h" />
     <ClInclude Include="header\tileInfo.h" />

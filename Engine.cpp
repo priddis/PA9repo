@@ -67,7 +67,10 @@ void Engine::drawSprites()
 				tempUnit->setPosition(i * tileSize, j * tileSize);
 				window->draw(*tempUnit); //remember to add nullptr handling
 			}
-
+			//may be unnecessary. check. wont hurt though
+			tempTileInfo = nullptr;
+			tempTerrain = nullptr;
+			tempUnit = nullptr;
 		}
 	}
 }

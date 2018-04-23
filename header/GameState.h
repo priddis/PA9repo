@@ -53,6 +53,9 @@ public:
 
 	KeyState & getKeys();
 
+	//the attack does the act of attacking, but maybe not checking whether it hsould be allowed? like to far, etc.
+	void attack(tileInfo* attacker, tileInfo* target);
+
 	void endTurn();
 
 	void GameState::attack(Unit* unit1, Unit* unit2);

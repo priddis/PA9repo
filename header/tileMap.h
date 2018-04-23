@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <SFML/Graphics.hpp>
+#include "Soldier.h" //why do i need this. no tank here but it knows tank
 
 
 class tileMap
@@ -24,8 +25,8 @@ public:
 	~tileMap();
 
 	bool openMap(std::string in_fileName);
-	bool allocUnitObj(Unit*& unitPMem, std::string in_unitType, std::string team, int scale);
-	bool allocTerrainObj(Terrain*& terrainPMem, std::string in_terrainType, int scale);
+	bool allocUnitObj(Unit*& unitPMem, sf::Texture*& texturePMem, std::string in_unitType, int team, int scale);
+	bool allocTerrainObj(Terrain*& terrainPMem, sf::Texture*& texturePMem, std::string in_terrainType, int scale);
 
 	void setTileInfo(int x, int y, tileInfo* tileInfoPMem);
 	tileInfo* getTileInfo(int x, int y);

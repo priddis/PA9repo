@@ -9,7 +9,7 @@ class Tank :
 	public Unit
 {
 public:
-	Tank(sf::Texture* in_texture, int in_team, float in_scale);
+	Tank(sf::Texture*& in_texture, int in_team, float in_scale);
 	virtual ~Tank(); //no dynam mem
 
 	//add any unique functions for a tank here..

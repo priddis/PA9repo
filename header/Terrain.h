@@ -11,7 +11,7 @@ class Terrain :
 protected:
 	int impedence;
 public:
-	Terrain(sf::Texture* in_texture, float in_scale);
+	Terrain(sf::Texture*& in_texture, float in_scale);
 	~Terrain();
 
 	virtual void setImpedence(int in_impedence) = 0;
