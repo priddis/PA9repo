@@ -30,8 +30,8 @@ void Camera::moveCamera(int xOffset, int yOffset)
 	}
 
 	//same as above, but for the right most boundaries
-	if (pos.bottomRightX > maxWidth) {
-		pos.bottomRightX = maxWidth;
+	if (pos.bottomRightX >= maxWidth) {
+		pos.bottomRightX = maxWidth ;
 		pos.topLeftX = maxWidth - pos.width;
 	}
 
@@ -41,9 +41,9 @@ void Camera::moveCamera(int xOffset, int yOffset)
 
 
 	//y components of above code
-	if (pos.bottomRightY > maxHeight) {
-		pos.bottomRightY = maxHeight;
-		pos.topLeftY = maxHeight;
+	if (pos.bottomRightY >= maxHeight) {
+		pos.bottomRightY = maxHeight; 
+		pos.topLeftY = maxHeight - pos.height ;
 	}
 
 	if (pos.topLeftY < 0) {
@@ -51,3 +51,34 @@ void Camera::moveCamera(int xOffset, int yOffset)
 		pos.bottomRightY = pos.height;
 	}
 }
+
+int Camera::getCamWidth()
+{
+	return pos.width;
+}
+
+int Camera::getCamHeight()
+{
+	return pos.height;
+}
+
+int Camera::getCamX()
+{
+	return pos.topLeftX;
+}
+
+int Camera::getCamY()
+{
+	return pos.topLeftY;
+}
+
+int Camera::getMaxX()
+{
+	return maxWidth;
+}
+
+int Camera::getMaxY()
+{
+	return maxHeight;
+};
+

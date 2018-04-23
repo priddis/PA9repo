@@ -13,6 +13,7 @@ and a struct for the keys being pressed
 #include "header/Cursor.h"
 #include "KeyState.h"
 #include "tileMap.h"
+#include "Camera.h"
 
 class GameState{
 
@@ -26,8 +27,8 @@ private:
 	int turnCounter;
 	int mapSizeX;
 	int mapSizeY;
-
-	//TileMap level;
+	
+	int tileSize;
 
 	//struct of keys currently held down
 	KeyState keys;
@@ -39,9 +40,12 @@ private:
 	//placed in gamestate for convenience
 	std::map<std::string, sf::Texture*>* loadTextureFiles();
 
+	Camera* cam;
+
 
 public:
 	GameState();
+	GameState(int newTileSize, int ResX, int ResY);
 	~GameState();
 
 	void update();
@@ -55,5 +59,11 @@ public:
 
 	void endTurn();
 
+	void setTileSize(int newSize);
+
 	void GameState::attack(Unit* unit1, Unit* unit2);
+
+	Camera* getCamera();
+
+	std::map<std::string, sf::Texture*>* getTexMap();
 };
