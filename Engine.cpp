@@ -39,6 +39,12 @@ Engine::Engine() {
 	
 
 	state = new GameState(tileSize, ResolutionX, ResolutionY);
+
+	//this line was for testing move highlight
+	MoveHighlight* test = new MoveHighlight(tileSize, state->getTexMap()->at("Move"), 3, 8, state->getCamera());
+	state->getUIElements()->push_back(test);
+	MoveHighlight* test2 = new MoveHighlight(tileSize, state->getTexMap()->at("Move"), 3, 5, state->getCamera() );
+	state->getUIElements()->push_back(test2);
 	
 }
 
@@ -85,6 +91,8 @@ void Engine::drawSprites(Camera* cam)
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::drawUIElements()
 {
+	
+	//int tileSize, sf::Texture * inTex, int  x, int y) : UI(inTex)
 	for (UI* element : *(state->getUIElements() ) ) {
 		window->draw(*element);
 	}

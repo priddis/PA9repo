@@ -64,4 +64,6 @@ public:
 	void GameState::attack(Unit* unit1, Unit* unit2);
 
 	Camera* getCamera();
+
+	std::map<std::string, sf::Texture*>* getTexMap();
 };

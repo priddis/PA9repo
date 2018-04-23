@@ -23,7 +23,7 @@ Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
 void Cursor::update(KeyState &curState, Camera* cam) {
 
 	if (counter % 8 == 0) {
-		std::cout << "cursor: " << posX << " " << posY << "\n";
+		//std::cout << "cursor: " << posX << " " << posY << "\n";
 		//std::cout << "max:" << cam->getMaxY();
 		if (curState.w) {
 

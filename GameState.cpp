@@ -139,10 +139,17 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Road", new sf::Texture()));
 	textureMap->at("Road")->loadFromFile("assets/Road.png");
 
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Move", new sf::Texture()));
+	textureMap->at("Move")->loadFromFile("assets/Move.png");
+
 
 	return textureMap;
 }
 
 tileMap*& GameState::getTileMap() {
 	return tileMapPtr;
+}
+
+std::map<std::string, sf::Texture*>* GameState::getTexMap() {
+	return texMap;
 }
