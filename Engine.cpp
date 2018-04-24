@@ -48,24 +48,24 @@ void Engine::drawSprites()
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
 	Unit* tempUnit = nullptr;
-	int i = 0;
-	int j = 0;
+	int x = 0;
+	int y = 0;
 	//getting access to the tile map that resides in gamestate. ref!
 	tileMap* tileMapPtr = state.getTileMap();
 
-	for (i = 0; i < tileMapPtr->getMaxX(); i++) {
+	for (x = 0; x < tileMapPtr->getMaxX(); x++) {
 
-		for (j = 0; j < tileMapPtr->getMaxY(); j++) {
-			tempTileInfo = tileMapPtr->getTileInfo(i, j);
+		for (y = 0; y < tileMapPtr->getMaxY(); y++) {
+			tempTileInfo = tileMapPtr->getTileInfo(x, y);
 			tempTerrain = tempTileInfo->getTerrainPtr();
 			tempUnit = tempTileInfo->getUnitPtr();
 			if (tempTerrain != nullptr) {
-				tempTerrain->setPosition(i * tileSize, j * tileSize);
+				tempTerrain->setPosition(x * tileSize, y * tileSize);
 				window->draw(*tempTerrain);
 			}
 			if (tempUnit != nullptr) {
-				tempUnit->setPosition(i * tileSize, j * tileSize);
-				window->draw(*tempUnit); //remember to add nullptr handling
+				tempUnit->setPosition(x * tileSize, y * tileSize);
+				window->draw(*tempUnit); 
 			}
 			//may be unnecessary. check. wont hurt though
 			tempTileInfo = nullptr;

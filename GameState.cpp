@@ -125,6 +125,8 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Soldier", new sf::Texture()));
 	textureMap->at("Soldier")->loadFromFile("assets/Soldier.png");
 
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Grass", new sf::Texture()));
+	textureMap->at("Grass")->loadFromFile("assets/Grass.png");
 
 	return textureMap;
 }

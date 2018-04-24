@@ -6,6 +6,7 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 #include "Soldier.h" //why do i need this. no tank here but it knows tank
+#include "Grass.h" //why do i need this. no tank here but it knows tank
 
 
 class tileMap
