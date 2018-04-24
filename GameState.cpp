@@ -102,14 +102,14 @@ void GameState::attack(Unit* attacker, Unit* target) {
 //Current thoughts are that if current hp is set below zero, we delete the pointer but this could mess up later things
 //tw: i think this is good. dealloc unit, set tileInfo's unit ptr to nullptr
 
-	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
+//	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
 
 	/*if(unit2->getCurrentHealth() <= 0){
 		delete unit2;
 	}
 	*/
 
-}
+//}
 
 Camera * GameState::getCamera()
 {
