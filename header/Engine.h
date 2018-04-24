@@ -3,6 +3,8 @@
 #pragma once
 #include "header/GameState.h"
 #include "header/EventManager.h"
+#include "header/Camera.h"
+#include "header/MoveHighlight.h"
 #include <fstream>
 
 
@@ -13,7 +15,7 @@ public:
 	Engine();
 	~Engine();
 
-	void drawSprites();
+	void drawSprites(Camera* cam);
 	void drawUIElements();
 	void updateUI(KeyState &keys);
 	void addSprite(sf::Sprite &newSprite);
@@ -23,12 +25,13 @@ public:
 private:
 
 
+	int tileSize = 100; //change this size later
+
 	std::map<std::string, std::string*> loadConfigFile();
 
-	GameState state;
+	GameState* state;
 	sf::RenderWindow* window;
 
-	int tileSize = 100; //change this size later
 	
 
 };

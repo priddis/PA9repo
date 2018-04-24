@@ -6,7 +6,6 @@
 
 Engine::Engine() {
 
-	
 	std::map<std::string, std::string*> settings = loadConfigFile();
 
 	//declaring window settings and setting their defaults in case they are not defined in config.txt
@@ -18,7 +17,7 @@ Engine::Engine() {
 	if (settings.count("ResX")) {
 		ResolutionX = std::stoi(*settings.at("ResX"));
 	}
-	if (settings.count("RexY")) {
+	if (settings.count("ResY")) {
 		ResolutionY = std::stoi(*settings.at("ResY"));
 	}
 	if (settings.count("Fullscreen")) {
@@ -35,32 +34,46 @@ Engine::Engine() {
 	}
 	window->setFramerateLimit(60);
 	
+
+	state = new GameState(tileSize, ResolutionX, ResolutionY);
+
+	//this line was for testing move highlight
+	MoveHighlight* test = new MoveHighlight(tileSize, state->getTexMap()->at("Move"), 2, 2, state->getCamera());
+	state->getUIElements()->push_back(test);
+	MoveHighlight* test2 = new MoveHighlight(tileSize, state->getTexMap()->at("Move"), 1, 3, state->getCamera() );
+	state->getUIElements()->push_back(test2);
+	
 }
 
 Engine::~Engine()
 {
-
+	delete state;
 }
 
 //iterates through the list of sprites and draws each one to the screen
-void Engine::drawSprites()
+void Engine::drawSprites(Camera* cam)
 {
+
+
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
 	Unit* tempUnit = nullptr;
 	int x = 0;
 	int y = 0;
 	//getting access to the tile map that resides in gamestate. ref!
-	tileMap* tileMapPtr = state.getTileMap();
+	tileMap* tileMapPtr = state->getTileMap();
 
-	for (x = 0; x < tileMapPtr->getMaxX(); x++) {
+	for (i = 0; i < cam->getCamWidth(); i++) {
 
-		for (y = 0; y < tileMapPtr->getMaxY(); y++) {
-			tempTileInfo = tileMapPtr->getTileInfo(x, y);
+		for (j = 0; j < cam->getCamHeight(); j++) {
+			//printing for testing purposes
+			//std::cout << i + cam->getCamX() << " " << j + cam->getCamY() << std::endl;
+
+			tempTileInfo = tileMapPtr->getTileInfo(i + cam->getCamX(), j + cam->getCamY());
 			tempTerrain = tempTileInfo->getTerrainPtr();
 			tempUnit = tempTileInfo->getUnitPtr();
 			if (tempTerrain != nullptr) {
-				tempTerrain->setPosition(x * tileSize, y * tileSize);
+				tempTerrain->setPosition(i  * tileSize, j * tileSize);
 				window->draw(*tempTerrain);
 			}
 			if (tempUnit != nullptr) {
@@ -78,7 +91,9 @@ void Engine::drawSprites()
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::drawUIElements()
 {
-	for (UI* element : *state.getUIElements()) {
+	
+	//int tileSize, sf::Texture * inTex, int  x, int y) : UI(inTex)
+	for (UI* element : *(state->getUIElements() ) ) {
 		window->draw(*element);
 	}
 
@@ -87,8 +102,8 @@ void Engine::drawUIElements()
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::updateUI(KeyState &keys)
 {
-	for (int i = 0; i < state.getUIElements()->size(); i++) {
-		state.getUIElements()->at(i)->update(keys);
+	for (int i = 0; i < state->getUIElements()->size(); i++) {
+		state->getUIElements()->at(i)->update(keys, state->getCamera());
 	}
 }
 
@@ -108,14 +123,14 @@ void Engine::run() {
 				window->close();
 			}
 			else {
-				EventManager::handleEvent(event,state.getKeys());
+				EventManager::handleEvent(event,state->getKeys());
 			}
 			
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
-		drawSprites();
-		updateUI(state.getKeys());
+		drawSprites(state->getCamera());
+		updateUI(state->getKeys());
 		drawUIElements();
 		window->display();
 	}

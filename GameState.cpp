@@ -9,6 +9,11 @@ Currently it contains a list for all the objects that need to be drawn to the sc
 
 GameState::GameState()
 {
+}
+
+GameState::GameState(int newTileSize, int ResX, int ResY)
+{
+	tileSize = newTileSize;
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
@@ -18,8 +23,12 @@ GameState::GameState()
 	//tile map stuff. future put in menu?
 	tileMapPtr = new tileMap(texMap, 1);
 	tileMapPtr->openMap("firstMap.txt");
+
+	//testing tilemap
+	//tileMapPtr->getTileInfo(19, 19)->getTerrainPtr();
 	
-	Cursor* mainCursor = new Cursor(texMap->at("Cursor"));
+	//Cursor initialization
+	Cursor* mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -29,6 +38,8 @@ GameState::GameState()
 
 	//TODO: when tilemap is complete add code to get dimensions here
 	//tilemap getMaxX and getMaxY give these values
+  
+	cam = new Camera( ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX() , tileMapPtr->getMaxY());
 
 	//key assignments, by default all keys are set to false
 	//false = key up, true = key down
@@ -42,6 +53,8 @@ GameState::GameState()
 
 	keys.space = false;
 	keys.lshift = false;
+
+	
 }
 
 GameState::~GameState() {
@@ -89,10 +102,21 @@ void GameState::attack(Unit* attacker, Unit* target) {
 //Current thoughts are that if current hp is set below zero, we delete the pointer but this could mess up later things
 //tw: i think this is good. dealloc unit, set tileInfo's unit ptr to nullptr
 
+	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
+
+	/*if(unit2->getCurrentHealth() <= 0){
+		delete unit2;
+	}
+	*/
+
+}
+
+Camera * GameState::getCamera()
+{
+	return cam;
+}
 
 /*void GameState::moveUnit(Unit & unit){
-
-	
 
 }
 */
@@ -104,6 +128,13 @@ void GameState::endTurn() {
 	if (currentPlayer) {
 		turnCounter++;
 	}
+}
+
+void GameState::setTileSize(int newSize)
+{
+
+	tileSize = newSize;
+	std::cout << "\n new tilesize: " << newSize;
 }
 
 
@@ -128,9 +159,16 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Grass", new sf::Texture()));
 	textureMap->at("Grass")->loadFromFile("assets/Grass.png");
 
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Move", new sf::Texture()));
+	textureMap->at("Move")->loadFromFile("assets/Move.png");
+
 	return textureMap;
 }
 
 tileMap*& GameState::getTileMap() {
 	return tileMapPtr;
+}
+
+std::map<std::string, sf::Texture*>* GameState::getTexMap() {
+	return texMap;
 }

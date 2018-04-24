@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "header\KeyState.h"
+#include "Camera.h"
 #include <iostream>
 
 class UI : public sf::Drawable
@@ -15,7 +16,7 @@ public:
 	UI(sf::Sprite Sprite, sf::Color Color);
 	UI(sf::Sprite Sprite, sf::Texture Texture);
 
-	virtual void update(KeyState &curState);
+	virtual void update(KeyState &curState, Camera* cam);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 protected:

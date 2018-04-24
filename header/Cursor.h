@@ -1,12 +1,20 @@
 #pragma once
 #include "UI.h"
-
+#include "Camera.h"
 class Cursor : public UI {
 private:
 
+	int tSize;
+
+	//this is relative to the grid
+	//these are not positions by pixels
+	int posY;
+	int posX;
+
 
 public:
-	Cursor(void);
-	Cursor(sf::Texture* inTex);
-	void update(KeyState &curState);
+	Cursor();
+	Cursor(int tileSize, sf::Texture* inTex);
+	void update(KeyState &curState, Camera* cam);
+	void movePos(int xOffset, int yOffset);
 };

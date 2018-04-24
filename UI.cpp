@@ -30,6 +30,6 @@ void UI::setTexture(sf::Texture* &texture) {
 	uiSprite.setTexture(*texture);
 }
 
-void UI::update(KeyState &curState) {
+void UI::update(KeyState &curState, Camera* cam) {
 
 }
