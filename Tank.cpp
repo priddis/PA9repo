@@ -6,7 +6,7 @@
 #include "header/Tank.h"
 
 Tank::Tank(sf::Texture*& in_texture, int in_team, float in_scale)
-	: Unit::Unit(in_texture, in_scale, in_team)
+	: Unit::Unit(in_texture, in_team, in_scale)
 {
 	setTeam(in_team);
 

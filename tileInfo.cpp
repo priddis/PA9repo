@@ -16,7 +16,7 @@ tileInfo::~tileInfo()
 
 	if (unitPtr != nullptr) delete unitPtr;
 	if (terrainPtr != nullptr) delete terrainPtr;
-	std::cout << "tileInfo deleted!" << std::endl;
+	//std::cout << "tileInfo deleted!" << std::endl;
 }
 
 
