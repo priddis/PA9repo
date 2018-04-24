@@ -28,7 +28,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	//tileMapPtr->getTileInfo(19, 19)->getTerrainPtr();
 	
 	//Cursor initialization
-	Cursor* mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
+	mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -53,7 +53,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	keys.space = false;
 	keys.lshift = false;
 
-	
+	movementMode = false;
 }
 
 GameState::~GameState() {
@@ -93,6 +93,41 @@ void GameState::attack(Unit* unit1, Unit* unit2){
 	}
 	*/
 
+}
+
+void GameState::moveUnit(Unit* pUnit) {
+	int unitPosX = pUnit->getPosition().x / 100;
+	int unitPosY = pUnit->getPosition().y / 100;
+
+	for (int i = 0; i < tileMapPtr->getMaxX()-1; i++) {
+		for (int j = 0; j < tileMapPtr->getMaxY()-1; j++) {
+			int range = std::abs(i - unitPosX) + std::abs(j - unitPosY);
+			
+			if (range <= pUnit->getTravelRange()) {
+				uiList->push_back(new MovementTile(tileSize, texMap->at("Move"), i, j, cam));
+			}
+		}
+	}
+}
+
+void GameState::action() {
+	int x = mainCursor->getX();
+	int y = mainCursor->getY();
+
+	tileInfo* currentTile = tileMapPtr->getTileInfo(x, y);
+
+	if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
+		movementMode = true;
+		moveUnit(currentTile->getUnitPtr());
+	}
+	else {
+		movementMode = false;
+	}
+}
+
+Cursor * GameState::getCursor()
+{
+	return mainCursor;
 }
 
 Camera * GameState::getCamera()
@@ -138,6 +173,9 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Road", new sf::Texture()));
 	textureMap->at("Road")->loadFromFile("assets/Road.png");
+
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Move", new sf::Texture()));
+	textureMap->at("Move")->loadFromFile("assets/move.png");
 
 
 	return textureMap;

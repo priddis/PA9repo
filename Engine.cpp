@@ -50,7 +50,11 @@ Engine::~Engine()
 //iterates through the list of sprites and draws each one to the screen
 void Engine::drawSprites(Camera* cam)
 {
-
+	bool spacePressed = false;
+	while (state->getKeys().space && !spacePressed) {
+		state->action();
+		spacePressed = true;
+	}
 
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;

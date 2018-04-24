@@ -3,12 +3,13 @@
 
 Cursor::Cursor(void) {
 	sf::Texture* pTexture = new sf::Texture();
-	if (!(*pTexture).loadFromFile("assets/cursor.png")) {
+	if (!(pTexture)->loadFromFile("assets/cursor.png")) {
 		std::cout << "Could not load cursor.png" << std::endl;
 	}
-
-
 	setTexture(pTexture);
+
+	posX = 0;
+	posY = 0;
 }
 
 Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
@@ -16,17 +17,17 @@ Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
 	tSize = tileSize;
 	posX = 0;
 	posY = 0;
+
 }
 
 //most of this complicated logic is to make the camera scroll when trying to move beyond what is currently being draw
 //to screen
 void Cursor::update(KeyState &curState, Camera* cam) {
 
-	if (counter % 8 == 0) {
+	if (counter % 8 == 0) { //set to 8 as an adjustment to the cursor speed
 		std::cout << "cursor: " << posX << " " << posY << "\n";
 		//std::cout << "max:" << cam->getMaxY();
 		if (curState.w) {
-
 			if (posY == cam->getCamY()) {
 				cam->moveCamera(0, -1);
 			}
@@ -83,8 +84,19 @@ void Cursor::update(KeyState &curState, Camera* cam) {
 	counter++;
 }
 
+int Cursor::getX() {
+	return posX;
+}
+
+int Cursor::getY() {
+	return posY;
+}
+
+
 void Cursor::movePos(int xOffset, int yOffset)
 {
 	posY += yOffset;
 	posX += xOffset;
 }
+
+

@@ -2,13 +2,13 @@
 #include <SFML/Graphics.hpp>
 #include "header\KeyState.h"
 #include "Camera.h"
+#include "tileInfo.h"
 #include <iostream>
 
 class UI : public sf::Drawable
 {
 private:
-	
-	
+
 public:
 	UI(void) { counter = 0; };
 	UI(sf::Texture *texture);
@@ -18,12 +18,15 @@ public:
 
 	virtual void update(KeyState &curState, Camera* cam);
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	sf::Texture* uiTexture; // Needed for the texture to exist.
 
 protected:
 
+
+	int counter;
 	// Set
 	void UI::setTexture(sf::Texture* &Texture);
 	sf::Sprite uiSprite;
-	sf::Texture* uiTexture; // Needed for the texture to exist.
-	int counter;
+
+
 };
