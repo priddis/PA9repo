@@ -5,8 +5,8 @@
 
 #include "header/Tank.h"
 
-Tank::Tank(sf::Texture* in_texture, int in_team, float in_scale)
-	: Unit::Unit(in_texture, in_scale, in_team)
+Tank::Tank(sf::Texture*& in_texture, int in_team, float in_scale)
+	: Unit::Unit(in_texture, in_team, in_scale)
 {
 	setTeam(in_team);
 
@@ -23,7 +23,7 @@ Tank::~Tank(){}
 
 void Tank::reduceHealthAttacked(int in_damage, std::string attackerUnitType) {
 	//switch doesn't work with strings. this may seem messy.
-	if		(attackerUnitType == "Rifleman") setCurrentHealth(in_damage - 1);
+	if		(attackerUnitType == "Soldier") setCurrentHealth(in_damage - 1);
 	else if (attackerUnitType == "Bazookaman") setCurrentHealth(in_damage + 2);
 	else    setCurrentHealth(in_damage);
 }

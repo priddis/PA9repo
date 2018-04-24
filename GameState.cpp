@@ -36,8 +36,9 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	currentPlayer = true;
 	turnCounter = 1;
 
-
-
+	//TODO: when tilemap is complete add code to get dimensions here
+	//tilemap getMaxX and getMaxY give these values
+  
 	cam = new Camera( ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX() , tileMapPtr->getMaxY());
 
 	//key assignments, by default all keys are set to false
@@ -78,22 +79,37 @@ KeyState & GameState::getKeys()
 }
 
 //Unit1 is attacking unit2
+//return type?
+void GameState::attack(Unit* attacker, Unit* target) {
+	//sound!
+	//explosion!
+	//animation!
+//	target->reduceHealthAttacked(attacker->getAttackDamage(), )
+
+	/*
+	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
+
+	if(unit2->getCurrentHealth() <= 0){
+	delete unit2;
+	}
+	*/
+}
+
 
 //TODO:
 //Death
 //not sure how to work in death yet
 //Current thoughts are that if current hp is set below zero, we delete the pointer but this could mess up later things
-void GameState::attack(Unit* unit1, Unit* unit2){
+//tw: i think this is good. dealloc unit, set tileInfo's unit ptr to nullptr
 
-
-	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
+//	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
 
 	/*if(unit2->getCurrentHealth() <= 0){
 		delete unit2;
 	}
 	*/
 
-}
+//}
 
 Camera * GameState::getCamera()
 {
@@ -101,8 +117,6 @@ Camera * GameState::getCamera()
 }
 
 /*void GameState::moveUnit(Unit & unit){
-
-	
 
 }
 */
@@ -139,9 +153,14 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Road", new sf::Texture()));
 	textureMap->at("Road")->loadFromFile("assets/Road.png");
 
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Soldier", new sf::Texture()));
+	textureMap->at("Soldier")->loadFromFile("assets/Soldier.png");
+
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Grass", new sf::Texture()));
+	textureMap->at("Grass")->loadFromFile("assets/Grass.png");
+
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Move", new sf::Texture()));
 	textureMap->at("Move")->loadFromFile("assets/Move.png");
-
 
 	return textureMap;
 }

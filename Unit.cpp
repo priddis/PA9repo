@@ -4,7 +4,7 @@
 
 #include "header/Unit.h"
 
-Unit::Unit(sf::Texture* in_texture, int in_team, float in_scale)
+Unit::Unit(sf::Texture*& in_texture, int in_team, float in_scale)
 	: sf::Sprite(*in_texture)
 {
 	this->setTeam(in_team);
