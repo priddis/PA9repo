@@ -6,9 +6,6 @@
 
 Engine::Engine() {
 
-	
-	
-
 	std::map<std::string, std::string*> settings = loadConfigFile();
 
 	//declaring window settings and setting their defaults in case they are not defined in config.txt
@@ -61,8 +58,8 @@ void Engine::drawSprites(Camera* cam)
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
 	Unit* tempUnit = nullptr;
-	int i = 0;
-	int j = 0;
+	int x = 0;
+	int y = 0;
 	//getting access to the tile map that resides in gamestate. ref!
 	tileMap* tileMapPtr = state->getTileMap();
 
@@ -80,10 +77,13 @@ void Engine::drawSprites(Camera* cam)
 				window->draw(*tempTerrain);
 			}
 			if (tempUnit != nullptr) {
-				tempUnit->setPosition(i * tileSize, j * tileSize);
-				window->draw(*tempUnit); //remember to add nullptr handling
+				tempUnit->setPosition(x * tileSize, y * tileSize);
+				window->draw(*tempUnit); 
 			}
-
+			//may be unnecessary. check. wont hurt though
+			tempTileInfo = nullptr;
+			tempTerrain = nullptr;
+			tempUnit = nullptr;
 		}
 	}
 }
