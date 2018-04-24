@@ -10,6 +10,8 @@ struct coordinates {
 
 };
 
+//the camera class is used to track which tiles need to be rendered
+//this allows scrolling on maps bigger than what the screen can render
 class Camera {
 
 private:

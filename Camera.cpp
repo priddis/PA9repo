@@ -17,6 +17,10 @@ Camera::Camera(int inWidth, int inHeight, int inMaxWidth, int inMaxHeight)
 
 }
 
+Camera::~Camera()
+{
+}
+
 void Camera::moveCamera(int xOffset, int yOffset)
 {
 	pos.topLeftX += xOffset;
