@@ -218,7 +218,7 @@ void GameState::action() {
 		moveList->clear();
 		enemyList->clear();
 	}
-	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
+	else if(currentTile->getUnitPtr() != NULL && movementMode == false && currentTile->getUnitPtr()->getTeam() == currentPlayer) { // Is there a unit under cursor?
 		movementMode = true;
 		drawMoveUI(currentTile->getUnitPtr(), x, y);
 		selectedUnit = currentTile->getUnitPtr();
