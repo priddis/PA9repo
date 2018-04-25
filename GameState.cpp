@@ -26,7 +26,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	//testing tilemap
 	//tileMapPtr->getTileInfo(19, 19)->getTerrainPtr();
-	
+
 	//Cursor initialization
 	mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
@@ -39,8 +39,8 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	//single presses
 	keyPressed = false;
 	counter = 0;
-  
-	cam = new Camera( ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX() , tileMapPtr->getMaxY());
+
+	cam = new Camera(ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX(), tileMapPtr->getMaxY());
 
 	//key assignments, by default all keys are set to false
 	//false = key up, true = key down
@@ -65,17 +65,18 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	//when a unit is selected, the possible move coordinates will be put in this list
 	moveList = new std::set<std::pair<int, int>>();
-<<<<
+
 	//but if there is an enemy blocking their move, it is put in this list
 	enemyList = new std::set<std::pair<int, int>>();
-====
+
 	sf::Font* f = new sf::Font();
 	f->loadFromFile("assets/DejaVuSans.ttf");
 
-	p1 = new sf::Text("Team 1",   *f  ,20);
+	p1 = new sf::Text("Team 1", *f, 20);
 	p2 = new sf::Text("Team 2", *f, 20);
+}
 
->>>>GameState::~GameState() {
+GameState::~GameState() {
 
 	spriteList->clear();
 
@@ -149,15 +150,17 @@ void GameState::drawMoveUI(Unit* pUnit, int unitPosX, int unitPosY) {
 			if ((pUnit->getCurrentTravelRange()) > 0 && //if the unit has at least one move left (eligble to attack)
 				(pUnit->getAttackRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY))) { //and the tile is within his attack range
 				uiList->push_back(new MovementTile(tileSize, texMap->at("Attack"), i, j, cam));
-				enemyList->insert(std::pair<int, int>(i, j));
+				//enemyList->insert(std::pair<int, int>(i, j));
 			} 
-			//if theres an enemy unit in our attack range, lets record it
+			//if theres an enemy unit in our attack range, lets record it 
+			
 			if ( (tileMapPtr->getTileInfo(i, j)->getUnitPtr() != nullptr)  && //if the selected tile has a unit
 					(pUnit->getAttackRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) && //and its in range of our move
 					(pUnit->getTeam() != tileMapPtr->getTileInfo(i, j)->getUnitPtr()->getTeam() ) ) //and its not the same team
 			{
 				enemyList->insert(std::pair<int, int>(i, j));
 			}
+			
 		}
 	}
 }
