@@ -63,6 +63,8 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	//when a unit is selected, the possible move coordinates will be put in this list
 	moveList = new std::set<std::pair<int, int>>();
+	//but if there is an enemy blocking their move, it is put in this list
+	enemyList = new std::set<std::pair<int, int>>();
 
 
 
@@ -121,6 +123,13 @@ void GameState::drawMoveUI(Unit* pUnit, int unitPosX, int unitPosY) {
 				uiList->push_back(new MovementTile(tileSize, texMap->at("Move"), i, j, cam));
 				moveList->insert(std::pair<int, int>(i, j));
 			}
+			//but if theres a unit in our move area, lets record it
+			else if (tileMapPtr->getTileInfo(i, j)->getUnitPtr() != nullptr && //if the selected tile has a unit
+					pUnit->getCurrentTravelRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY && //and its in range of our move
+					selectedUnit->getTeam() != tileMapPtr->getTileInfo(i, j)->getUnitPtr()->getTeam())) //and its not the same team
+			{
+				enemyList->insert(std::pair<int, int>(i, j));
+			}
 		}
 	}
 }
@@ -151,12 +160,27 @@ void GameState::action() {
 		if (moveList->count(std::pair<int, int>(x, y))) {
 			currentTile->setUnitPtr(selectedUnit);
 			tileMapPtr->getTileInfo(selectedX, selectedY)->setUnitPtr(nullptr);
-
 		}
 		removeUI("MovementTile");
 		//std::cout << "testing move tile destruction" << std::endl;
 		moveList->clear();
+		
+		////tw workspace
+		if (enemyList->count(std::pair<int, int>(x, y))) {
+			std::cout << "targets initial health: " << tileMapPtr->getTileInfo(x, y)->getUnitPtr()->getCurrentHealth() << std::endl;
+			attack(selectedUnit, tileMapPtr->getTileInfo(x, y)->getUnitPtr());
+			if (tileMapPtr->getTileInfo(x, y)->getUnitPtr() == nullptr) {
+				std::cout << "target is dead! " << std::endl;
+			}
+			else std::cout << "targets health after the attack: " << tileMapPtr->getTileInfo(x, y)->getUnitPtr()->getCurrentHealth() << std::endl;
 
+			//currentTile->setUnitPtr(selectedUnit);
+			//tileMapPtr->getTileInfo(selectedX, selectedY)->setUnitPtr(nullptr);
+		} 
+		removeUI("MovementTile");
+		//std::cout << "testing move tile destruction" << std::endl;
+		moveList->clear();
+		///////////////////
 	}
 	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
 		movementMode = true;

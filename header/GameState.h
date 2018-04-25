@@ -61,6 +61,8 @@ private:
 	int counter;
 
 	std::set<std::pair<int, int>>* moveList;
+	std::set<std::pair<int, int>>* enemyList;
+
 
 	int selectedX;
 	int selectedY;
@@ -88,7 +90,7 @@ public:
 
 	void setTileSize(int newSize);
 
-	void GameState::attack(Unit* unit1, Unit* unit2);
+	//void GameState::attack(Unit* unit1, Unit* unit2);
 	void GameState::action();
 
 	Cursor* getCursor();
