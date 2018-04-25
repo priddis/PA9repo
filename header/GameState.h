@@ -11,6 +11,7 @@ and a struct for the keys being pressed
 #include <SFML/Graphics.hpp>
 #include "header/Unit.h"
 #include "header/Cursor.h"
+#include "MovementTile.h"
 #include "KeyState.h"
 #include "tileMap.h"
 #include "Camera.h"
@@ -21,7 +22,9 @@ private:
 
 	//list of sprites to display to the screen
 	std::list<sf::Sprite>* spriteList;
-	std::vector<UI*>* uiList;
+	std::list<UI*>* uiList;
+
+	Cursor *mainCursor;
 
 	bool currentPlayer;
 	int turnCounter;
@@ -42,7 +45,11 @@ private:
 
 	Camera* cam;
 
+	void moveUnit(Unit *pUnit);
+	bool movementMode;
 
+	bool keyPressed;
+	int counter;
 public:
 	GameState();
 	GameState(int newTileSize, int ResX, int ResY);
@@ -53,7 +60,8 @@ public:
 	tileMap*& getTileMap(); //should be const
 
 	std::list<sf::Sprite>* & getSprites();
-	std::vector<UI*>* & getUIElements();
+	std::list<UI*>* & getUIElements();
+	void removeUI(std::string id);
 
 	KeyState & getKeys();
 
@@ -65,7 +73,9 @@ public:
 	void setTileSize(int newSize);
 
 	void GameState::attack(Unit* unit1, Unit* unit2);
+	void GameState::action();
 
+	Cursor* getCursor();
 	Camera* getCamera();
 
 	std::map<std::string, sf::Texture*>* getTexMap();
