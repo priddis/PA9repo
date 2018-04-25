@@ -159,6 +159,10 @@ void GameState::action() {
 
 		if (moveList->count(std::pair<int, int>(x, y))) {
 			currentTile->setUnitPtr(selectedUnit);
+
+			int distanceTraveled = std::abs(x - selectedX) + std::abs(y - selectedY);
+
+			selectedUnit->setCurrentTravelRange(selectedUnit->getCurrentTravelRange() - distanceTraveled);
 			tileMapPtr->getTileInfo(selectedX, selectedY)->setUnitPtr(nullptr);
 		}
 		removeUI("MovementTile");
@@ -273,6 +277,10 @@ void GameState::update() {
 	}
 	else if(getKeys().space == false) {
 		keyPressed = false;
+	}
+
+	if (keys.lshift) {
+		endTurn();
 	}
 
 
