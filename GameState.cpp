@@ -104,7 +104,8 @@ void GameState::attack(Unit*& attacker, Unit*& target) {
 	target->setCurrentHealth(target->getCurrentHealth() - damage);
 	//if we hit 0, target dies
 	if (target->getCurrentHealth() == 0) die(target);
-
+	//no more moves for you!
+	attacker->setCurrentTravelRange(0);
 }
 
 void GameState::die(Unit*& in_unit) {
@@ -124,9 +125,10 @@ void GameState::drawMoveUI(Unit* pUnit, int unitPosX, int unitPosY) {
 				moveList->insert(std::pair<int, int>(i, j));
 			}
 			//but if theres a unit in our move area, lets record it
-			else if (tileMapPtr->getTileInfo(i, j)->getUnitPtr() != nullptr && //if the selected tile has a unit
-					pUnit->getCurrentTravelRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY && //and its in range of our move
-					selectedUnit->getTeam() != tileMapPtr->getTileInfo(i, j)->getUnitPtr()->getTeam())) //and its not the same team
+			//get team called for a nullptr i think? fix! and then check out how they did the move tile display. do a ranged one too.
+			else if ( (tileMapPtr->getTileInfo(i, j)->getUnitPtr() != nullptr)  && //if the selected tile has a unit
+					(pUnit->getAttackRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) && //and its in range of our move
+					(pUnit->getTeam() != tileMapPtr->getTileInfo(i, j)->getUnitPtr()->getTeam() ) ) //and its not the same team
 			{
 				enemyList->insert(std::pair<int, int>(i, j));
 			}
@@ -169,8 +171,8 @@ void GameState::action() {
 		//std::cout << "testing move tile destruction" << std::endl;
 		moveList->clear();
 		
-		////tw workspace
-		if (enemyList->count(std::pair<int, int>(x, y))) {
+		//if unit selected, and then enemy unit selected within attack range, and you have at least one move left, attack!
+		if (enemyList->count(std::pair<int, int>(x, y)) && selectedUnit->getCurrentTravelRange() > 0) {
 			std::cout << "targets initial health: " << tileMapPtr->getTileInfo(x, y)->getUnitPtr()->getCurrentHealth() << std::endl;
 			attack(selectedUnit, tileMapPtr->getTileInfo(x, y)->getUnitPtr());
 			if (tileMapPtr->getTileInfo(x, y)->getUnitPtr() == nullptr) {
@@ -184,6 +186,7 @@ void GameState::action() {
 		removeUI("MovementTile");
 		//std::cout << "testing move tile destruction" << std::endl;
 		moveList->clear();
+		enemyList->clear();
 		///////////////////
 	}
 	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
