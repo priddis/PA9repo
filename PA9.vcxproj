@@ -136,7 +136,10 @@
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="header\AttackTile.h" />
+=======
+>>>>>>> 8ee0d7a9dd757fd36ef754b4d0f482f6682f5a08
     <ClInclude Include="header\Camera.h" />
     <ClInclude Include="header\Cursor.h" />
     <ClInclude Include="header\Engine.h" />
@@ -144,7 +147,7 @@
     <ClInclude Include="header\GameState.h" />
     <ClInclude Include="header\Grass.h" />
     <ClInclude Include="header\KeyState.h" />
-    <ClInclude Include="header\MoveHighlight.h" />
+    <ClInclude Include="header\MovementTile.h" />
     <ClInclude Include="header\Road.h" />
     <ClInclude Include="header\Soldier.h" />
     <ClInclude Include="header\Tank.h" />

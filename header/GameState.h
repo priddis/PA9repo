@@ -58,6 +58,7 @@ private:
 	bool movementMode;
 
 	bool keyPressed;
+	bool lshiftDown;
 	int counter;
 
 	std::set<std::pair<int, int>>* moveList;
@@ -66,6 +67,9 @@ private:
 
 	int selectedX;
 	int selectedY;
+
+	sf::Text* p1;
+	sf::Text* p2;
 
 public:
 	GameState();
@@ -81,6 +85,11 @@ public:
 	void removeUI(std::string id);
 
 	KeyState & getKeys();
+
+	int getCurrentPlayer();
+
+	sf::Text* & getP1Text();
+	sf::Text* & getP2Text();
 
 	void attack(Unit*& attacker, Unit*& target);
 	void die(Unit*& in_unit);
