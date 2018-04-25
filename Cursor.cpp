@@ -5,12 +5,14 @@
 //left for testing purposes
 Cursor::Cursor(void) {
 	sf::Texture* pTexture = new sf::Texture();
-	if (!(*pTexture).loadFromFile("assets/cursor.png")) {
+	if (!(pTexture)->loadFromFile("assets/cursor.png")) {
 		std::cout << "Could not load cursor.png" << std::endl;
 	}
-
-
 	setTexture(pTexture);
+
+	posX = 0;
+	posY = 0;
+	identifier = "Cursor";
 }
 
 Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
@@ -18,6 +20,7 @@ Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
 	tSize = tileSize;
 	posX = 0;
 	posY = 0;
+	identifier = "Cursor";
 }
 
 //most of this complicated logic is to make the camera scroll 
@@ -91,9 +94,18 @@ void Cursor::update(KeyState &curState, Camera* cam) {
 	counter++;
 }
 
-//sets the position relative to the grid
+int Cursor::getX() {
+	return posX;
+}
+
+int Cursor::getY() {
+	return posY;
+}
+
 void Cursor::movePos(int xOffset, int yOffset)
 {
 	posY += yOffset;
 	posX += xOffset;
 }
+
+

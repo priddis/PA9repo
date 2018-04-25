@@ -33,7 +33,6 @@ Engine::Engine() {
 		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!");
 	}
 	window->setFramerateLimit(60);
-	
 
 	state = new GameState(tileSize, ResolutionX, ResolutionY);
 
@@ -53,7 +52,6 @@ Engine::~Engine()
 //iterates through the list of sprites and draws each one to the screen
 void Engine::drawSprites(Camera* cam)
 {
-
 
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
@@ -91,9 +89,7 @@ void Engine::drawSprites(Camera* cam)
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::drawUIElements()
 {
-	
-	//int tileSize, sf::Texture * inTex, int  x, int y) : UI(inTex)
-	for (UI* element : *(state->getUIElements() ) ) {
+	for (UI* element : *(state->getUIElements())) {
 		window->draw(*element);
 	}
 
@@ -102,10 +98,18 @@ void Engine::drawUIElements()
 //iterates through the list of UI elements and draws each one to the screen
 void Engine::updateUI(KeyState &keys)
 {
-	for (int i = 0; i < state->getUIElements()->size(); i++) {
-		state->getUIElements()->at(i)->update(keys, state->getCamera());
+	for (UI* element : *state->getUIElements()) {
+		element->update(keys, state->getCamera());
 	}
 }
+
+//void keyPresses() {
+//	bool spacePressed = false; // needed for a single press
+//	while (getKe.space && !spacePressed) {
+//		state->action();
+//		spacePressed = true;
+//	}
+//}
 
 //run() contains the main game loop
 //this is where events are handled through the event handler
@@ -129,6 +133,7 @@ void Engine::run() {
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
+		state->update();
 		drawSprites(state->getCamera());
 		updateUI(state->getKeys());
 		drawUIElements();

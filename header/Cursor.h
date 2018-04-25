@@ -1,6 +1,8 @@
 #pragma once
 #include "UI.h"
-#include "Camera.h"
+//#include "Camera.h"
+//#include "tileInfo.h"
+
 class Cursor : public UI {
 private:
 
@@ -15,6 +17,11 @@ private:
 public:
 	Cursor();
 	Cursor(int tileSize, sf::Texture* inTex);
+
 	void update(KeyState &curState, Camera* cam);
 	void movePos(int xOffset, int yOffset);
+
+	int getX();
+	int getY();
+
 };
