@@ -3,7 +3,7 @@
 
 class Soldier :
 	public Unit
-	{
+{
 	public:
 		Soldier(sf::Texture* in_texture, int in_team, float in_scale);
 		virtual ~Soldier(); //no dynam mem

@@ -66,8 +66,6 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	//but if there is an enemy blocking their move, it is put in this list
 	enemyList = new std::set<std::pair<int, int>>();
 
-
-
 }
 
 GameState::~GameState() {
@@ -119,14 +117,20 @@ void GameState::drawMoveUI(Unit* pUnit, int unitPosX, int unitPosY) {
 	for (int i = 0; i < tileMapPtr->getMaxX(); i++) {
 		for (int j = 0; j < tileMapPtr->getMaxY(); j++) {
 			
-			//tileMapPtr->getTileInfo(i,j)->getTerrainPtr()->getTraversable()
+			//blue move tiles rendered when selecting a unit
 			if (  tileMapPtr->getTileInfo(i, j)->getUnitPtr() == nullptr && pUnit->getCurrentTravelRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) {
 				uiList->push_back(new MovementTile(tileSize, texMap->at("Move"), i, j, cam));
 				moveList->insert(std::pair<int, int>(i, j));
 			}
-			//but if theres a unit in our move area, lets record it
-			//get team called for a nullptr i think? fix! and then check out how they did the move tile display. do a ranged one too.
-			else if ( (tileMapPtr->getTileInfo(i, j)->getUnitPtr() != nullptr)  && //if the selected tile has a unit
+			//red attack range tiles rendered when selecting a unit 
+			
+			if ((pUnit->getCurrentTravelRange()) > 0 && //if the unit has at least one move left (eligble to attack)
+				(pUnit->getAttackRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY))) { //and the tile is within his attack range
+				uiList->push_back(new MovementTile(tileSize, texMap->at("Attack"), i, j, cam));
+				enemyList->insert(std::pair<int, int>(i, j));
+			} 
+			//if theres an enemy unit in our attack range, lets record it
+			if ( (tileMapPtr->getTileInfo(i, j)->getUnitPtr() != nullptr)  && //if the selected tile has a unit
 					(pUnit->getAttackRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) && //and its in range of our move
 					(pUnit->getTeam() != tileMapPtr->getTileInfo(i, j)->getUnitPtr()->getTeam() ) ) //and its not the same team
 			{
@@ -167,27 +171,27 @@ void GameState::action() {
 			selectedUnit->setCurrentTravelRange(selectedUnit->getCurrentTravelRange() - distanceTraveled);
 			tileMapPtr->getTileInfo(selectedX, selectedY)->setUnitPtr(nullptr);
 		}
-		removeUI("MovementTile");
+		//removeUI("MovementTile");
+		removeUI("AttackTile");
+
 		//std::cout << "testing move tile destruction" << std::endl;
 		moveList->clear();
 		
-		//if unit selected, and then enemy unit selected within attack range, and you have at least one move left, attack!
-		if (enemyList->count(std::pair<int, int>(x, y)) && selectedUnit->getCurrentTravelRange() > 0) {
+		//attack!
+		if ((enemyList->count(std::pair<int, int>(x, y))) && //its an enemy in our eligible enemy list
+			(selectedUnit->getCurrentTravelRange() > 0)) { //and we have at least one move left
+
 			std::cout << "targets initial health: " << tileMapPtr->getTileInfo(x, y)->getUnitPtr()->getCurrentHealth() << std::endl;
 			attack(selectedUnit, tileMapPtr->getTileInfo(x, y)->getUnitPtr());
 			if (tileMapPtr->getTileInfo(x, y)->getUnitPtr() == nullptr) {
 				std::cout << "target is dead! " << std::endl;
 			}
 			else std::cout << "targets health after the attack: " << tileMapPtr->getTileInfo(x, y)->getUnitPtr()->getCurrentHealth() << std::endl;
-
-			//currentTile->setUnitPtr(selectedUnit);
-			//tileMapPtr->getTileInfo(selectedX, selectedY)->setUnitPtr(nullptr);
 		} 
 		removeUI("MovementTile");
 		//std::cout << "testing move tile destruction" << std::endl;
 		moveList->clear();
 		enemyList->clear();
-		///////////////////
 	}
 	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
 		movementMode = true;

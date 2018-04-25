@@ -117,6 +117,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttackTile.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -135,7 +136,7 @@
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="entities\include_entities.h" />
+    <ClInclude Include="header\AttackTile.h" />
     <ClInclude Include="header\Camera.h" />
     <ClInclude Include="header\Cursor.h" />
     <ClInclude Include="header\Engine.h" />
