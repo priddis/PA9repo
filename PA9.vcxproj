@@ -117,7 +117,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AttackTile.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -125,7 +124,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MovementTile.cpp" />
+    <ClCompile Include="MOVEHIGHLIGHT.CPP" />
     <ClCompile Include="Road.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="Tank.cpp" />
@@ -136,10 +135,7 @@
     <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <ClInclude Include="header\AttackTile.h" />
-=======
->>>>>>> 8ee0d7a9dd757fd36ef754b4d0f482f6682f5a08
+    <ClInclude Include="entities\include_entities.h" />
     <ClInclude Include="header\Camera.h" />
     <ClInclude Include="header\Cursor.h" />
     <ClInclude Include="header\Engine.h" />
@@ -147,7 +143,7 @@
     <ClInclude Include="header\GameState.h" />
     <ClInclude Include="header\Grass.h" />
     <ClInclude Include="header\KeyState.h" />
-    <ClInclude Include="header\MovementTile.h" />
+    <ClInclude Include="header\MoveHighlight.h" />
     <ClInclude Include="header\Road.h" />
     <ClInclude Include="header\Soldier.h" />
     <ClInclude Include="header\Tank.h" />
