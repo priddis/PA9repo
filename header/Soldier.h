@@ -9,5 +9,6 @@ class Soldier :
 		virtual ~Soldier(); //no dynam mem
 
 						 //add any unique functions for a tank here..
-		void reduceHealthAttacked(int in_damage, std::string attackerUnitType);
+		//void reduceHealthAttacked(int in_damage, std::string attackerUnitType);
+		void setDefensiveModifier();
 	};

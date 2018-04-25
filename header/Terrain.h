@@ -15,4 +15,15 @@ public:
 	~Terrain();
 
 	virtual void setImpedence(int in_impedence) = 0;
+
+	std::string getTerrainType();
+	bool getTraversable();
+
+	void setTerrainType(std::string in_terrainType);
+	void setTraversable(bool in_traversable);
+
+private:
+	std::string terrainType;
+	bool traversable;
+
 };
