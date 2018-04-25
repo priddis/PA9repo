@@ -17,7 +17,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
-	uiList = new std::vector<UI*>;
+	uiList = new std::list<UI*>;
 	texMap = GameState::loadTextureFiles();
 
 	//tile map stuff. future put in menu?
@@ -28,7 +28,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	//tileMapPtr->getTileInfo(19, 19)->getTerrainPtr();
 	
 	//Cursor initialization
-	Cursor* mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
+	mainCursor = new Cursor(tileSize, texMap->at("Cursor"));
 	uiList->push_back(mainCursor);
 
 	//currentPlayer is the player that is currently making their turn
@@ -36,8 +36,9 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	//4/24 modifying this slightly. extensible to more than two teams but also aligning to team "1" and "2" for consitancy. need to start at player 1
 	currentPlayer = 1;
 
-	//TODO: when tilemap is complete add code to get dimensions here
-	//tilemap getMaxX and getMaxY give these values
+	//single presses
+	keyPressed = false;
+	counter = 0;
   
 	cam = new Camera( ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX() , tileMapPtr->getMaxY());
 
@@ -54,7 +55,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	keys.space = false;
 	keys.lshift = false;
 
-	
+	movementMode = false;
 }
 
 GameState::~GameState() {
@@ -69,7 +70,7 @@ std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
 }
 
-std::vector<UI*>*& GameState::getUIElements() {
+std::list<UI*>*& GameState::getUIElements() {
 	return uiList;
 }
 
@@ -100,15 +101,60 @@ void GameState::die(Unit*& in_unit) {
 }
 
 
-Camera * GameState::getCamera()
-{
-	return cam;
+void GameState::moveUnit(Unit* pUnit) {
+	int unitPosX = pUnit->getPosition().x / 100;
+	int unitPosY = pUnit->getPosition().y / 100;
+
+	for (int i = 0; i < tileMapPtr->getMaxX()-1; i++) {
+		for (int j = 0; j < tileMapPtr->getMaxY()-1; j++) {
+			int range = std::abs(i - unitPosX) + std::abs(j - unitPosY);
+			
+			if (range <= pUnit->getTravelRange()) {
+				uiList->push_back(new MovementTile(tileSize, texMap->at("Move"), i, j, cam));
+			}
+		}
+	}
 }
 
 void GameState::setPlayerCount(int in_playerCount) {
 	playerCount = in_playerCount;
 }
 
+void GameState::removeUI(std::string id) { // Removes UI with a specified identifier
+	for (UI* element : *getUIElements()) {
+		if (element->identifier == id) {
+			getUIElements()->remove(element);
+			delete element;
+		}
+	}
+}
+
+void GameState::action() {
+	int x = mainCursor->getX();
+	int y = mainCursor->getY();
+
+	tileInfo* currentTile = tileMapPtr->getTileInfo(x, y);
+
+	if (movementMode == true) {
+		movementMode = false;
+		removeUI("MovementTile");
+		std::cout << "wat" << std::endl;
+	}
+	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
+		movementMode = true;
+		moveUnit(currentTile->getUnitPtr());
+	}
+}
+
+Cursor * GameState::getCursor()
+{
+	return mainCursor;
+}
+
+Camera * GameState::getCamera()
+{
+	return cam;
+}
 
 //ends the turn by switching players and adds to the turn counter whenever player1's turn begins
 void GameState::endTurn() {
@@ -141,7 +187,6 @@ void GameState::setTileSize(int newSize)
 	std::cout << "\n new tilesize: " << newSize;
 }
 
-
 //runs at launch, loads the all the texture files needed for sprites
 std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 {
@@ -171,6 +216,19 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 
 tileMap*& GameState::getTileMap() {
 	return tileMapPtr;
+}
+
+void GameState::update() {
+
+	if (getKeys().space && !keyPressed) {
+		action();
+		keyPressed = true;
+	}
+
+	if (counter % 15 == 0)
+		keyPressed = false;
+
+	counter++;
 }
 
 std::map<std::string, sf::Texture*>* GameState::getTexMap() {

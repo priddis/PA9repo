@@ -5,21 +5,27 @@ UI::UI(sf::Texture* texture) {
 	uiTexture = texture;
 	uiSprite.setTexture(*texture);
 
-
+	identifier = "UI";
 }
 
 UI::UI(sf::Sprite Sprite, sf::Color Color) {
 	uiSprite = Sprite;
 	uiSprite.setColor(Color);
+
+	identifier = "UI";
 }
 
 UI::UI(sf::Sprite Sprite, sf::Texture Texture) {
 	uiSprite = Sprite;
 	uiSprite.setTexture(Texture);
+
+	identifier = "UI";
 }
 
 UI::UI(sf::Sprite Sprite) {
 	uiSprite = Sprite;
+
+	identifier = "UI";
 }
 
 void UI::draw(sf::RenderTarget& target, sf::RenderStates states) const {

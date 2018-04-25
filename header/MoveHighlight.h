@@ -1,5 +1,8 @@
 #pragma once
 #include "UI.h"
+
+//MoveHighlight is a indicator that is overlayed tiles that the selected unit can move to.
+//the txture is a blue square with 50% opacity
 class MoveHighlight : public UI {
 
 private:
