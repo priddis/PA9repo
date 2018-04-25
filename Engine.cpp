@@ -27,10 +27,10 @@ Engine::Engine() {
 	}
 
 	if (Fullscreen) {
-		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!", sf::Style::Fullscreen);
+		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "Farm Wars", sf::Style::Fullscreen);
 	}
 	else{
-		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "SFML works!");
+		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "Farm Wars");
 	}
 	window->setFramerateLimit(60);
 

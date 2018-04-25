@@ -112,15 +112,12 @@ void GameState::attack(Unit* attacker, Unit* target) {
 
 //}
 
-void GameState::moveUnit(Unit* pUnit) {
-	int unitPosX = pUnit->getPosition().x / 100;
-	int unitPosY = pUnit->getPosition().y / 100;
+void GameState::moveUnit(Unit* pUnit, int unitPosX, int unitPosY) {
 
-	for (int i = 0; i < tileMapPtr->getMaxX()-1; i++) {
-		for (int j = 0; j < tileMapPtr->getMaxY()-1; j++) {
-			int range = std::abs(i - unitPosX) + std::abs(j - unitPosY);
+	for (int i = 0; i < tileMapPtr->getMaxX(); i++) {
+		for (int j = 0; j < tileMapPtr->getMaxY(); j++) {
 			
-			if (range <= pUnit->getTravelRange()) {
+			if (pUnit->getTravelRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) {
 				uiList->push_back(new MovementTile(tileSize, texMap->at("Move"), i, j, cam));
 			}
 		}
@@ -149,7 +146,7 @@ void GameState::action() {
 	}
 	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
 		movementMode = true;
-		moveUnit(currentTile->getUnitPtr());
+		moveUnit(currentTile->getUnitPtr(), x, y);
 	}
 }
 
@@ -190,13 +187,13 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 	textureMap->at("Cursor")->loadFromFile("assets/cursor.png");
 
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Tank", new sf::Texture()));
-	textureMap->at("Tank")->loadFromFile("assets/Tank.png");
+	textureMap->at("Tank")->loadFromFile("assets/pig.png");
 
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Road", new sf::Texture()));
 	textureMap->at("Road")->loadFromFile("assets/Road.png");
 
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Soldier", new sf::Texture()));
-	textureMap->at("Soldier")->loadFromFile("assets/Soldier.png");
+	textureMap->at("Soldier")->loadFromFile("assets/cow.png");
 
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Grass", new sf::Texture()));
 	textureMap->at("Grass")->loadFromFile("assets/Grass.png");
@@ -213,13 +210,16 @@ tileMap*& GameState::getTileMap() {
 
 void GameState::update() {
 
-	if (getKeys().space && !keyPressed) {
-		action();
+	if (keys.space && !keyPressed ) {
 		keyPressed = true;
+		action();
+
+	}
+	else if(getKeys().space == false) {
+		keyPressed = false;
 	}
 
-	if (counter % 15 == 0)
-		keyPressed = false;
+
 
 	counter++;
 }

@@ -15,6 +15,7 @@ MovementTile::MovementTile(int tileSize, sf::Texture * inTex, int  x, int y, Cam
 	uiSprite.move((x - cam->getCamX()) * tSize, (y - cam->getCamY()) * tileSize);
 	//std::cout << cam->getCamX();
 	identifier = "MovementTile";
+	std::cout << x << "," << y  << std::endl;;
 }
 
 void MovementTile::update(KeyState & curState, Camera * cam)

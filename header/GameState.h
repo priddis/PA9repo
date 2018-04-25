@@ -45,7 +45,7 @@ private:
 
 	Camera* cam;
 
-	void moveUnit(Unit *pUnit);
+	void moveUnit(Unit *pUnit, int unitPosX, int unitPosY);
 	bool movementMode;
 
 	bool keyPressed;
