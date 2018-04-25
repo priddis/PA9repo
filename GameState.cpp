@@ -74,6 +74,12 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	p1 = new sf::Text("Team 1", *f, 20);
 	p2 = new sf::Text("Team 2", *f, 20);
+	pTeam1 = new sf::Text("Team 1", *f, 20);
+	pTeam1->setPosition(0, 20);
+	pTeam2 = new sf::Text("Team 2", *f, 20);
+	pTeam2->setPosition(0, 20);
+	healthText = new sf::Text("", *f, 20);
+
 }
 
 GameState::~GameState() {
@@ -111,6 +117,22 @@ sf::Text *& GameState::getP2Text()
 {
 	return p2;
 }
+
+sf::Text *& GameState::getP1TeamText()
+{
+	return pTeam1;
+}
+
+sf::Text *& GameState::getP2TeamText()
+{
+	return pTeam2;
+}
+
+sf::Text *& GameState::getHealthText()
+{
+	return healthText;
+}
+
 
 void GameState::attack(Unit*& attacker, Unit*& target) {
 	//sound!
@@ -325,9 +347,6 @@ void GameState::update() {
 	else if (keys.lshift == false) {
 		lshiftDown = false;
 	}
-
-
-
 	counter++;
 }
 
