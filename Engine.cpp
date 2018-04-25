@@ -36,11 +36,6 @@ Engine::Engine() {
 
 	state = new GameState(tileSize, ResolutionX, ResolutionY);
 
-	//this line was for testing move highlight
-	MoveHighlight* test = new MoveHighlight(tileSize, state->getTexMap()->at("Move"), 2, 2, state->getCamera());
-	state->getUIElements()->push_back(test);
-	MoveHighlight* test2 = new MoveHighlight(tileSize, state->getTexMap()->at("Move"), 1, 3, state->getCamera() );
-	state->getUIElements()->push_back(test2);
 	
 }
 
