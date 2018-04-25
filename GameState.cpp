@@ -193,7 +193,7 @@ void GameState::endTurn() {
 			//get the unit in this x, y coordinate
 			tempUnit = tileMapPtr->getTileInfo(x, y)->getUnitPtr();
 			//if the tile contains a unit owned by the current player, reset its travel range to max
-			if (tempUnit->getTeam() == currentPlayer) {
+			if (tempUnit != nullptr && tempUnit->getTeam() == currentPlayer) {
 				tempUnit->setCurrentTravelRange(tempUnit->getMaxTravelRange());
 			}
 		}
@@ -236,6 +236,9 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 
 	textureMap->insert(std::pair<std::string, sf::Texture*>("Move", new sf::Texture()));
 	textureMap->at("Move")->loadFromFile("assets/Move.png");
+
+	textureMap->insert(std::pair<std::string, sf::Texture*>("Attack", new sf::Texture()));
+	textureMap->at("Attack")->loadFromFile("assets/Attack.png");
 
 	return textureMap;
 }
