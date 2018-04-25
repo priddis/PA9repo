@@ -8,6 +8,7 @@ and a struct for the keys being pressed
 #pragma once
 #include <list>
 #include <vector>
+#include <set>
 #include <SFML/Graphics.hpp>
 #include "header/Unit.h"
 #include "header/Cursor.h"
@@ -50,11 +51,20 @@ private:
 
 	Camera* cam;
 
-	void moveUnit(Unit *pUnit, int unitPosX, int unitPosY);
+	void drawMoveUI(Unit *pUnit, int unitPosX, int unitPosY);
+
+	Unit* selectedUnit;
+
 	bool movementMode;
 
 	bool keyPressed;
 	int counter;
+
+	std::set<std::pair<int, int>>* moveList;
+
+	int selectedX;
+	int selectedY;
+
 public:
 	GameState();
 	GameState(int newTileSize, int ResX, int ResY);

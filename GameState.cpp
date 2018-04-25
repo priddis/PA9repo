@@ -56,6 +56,16 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	keys.lshift = false;
 
 	movementMode = false;
+	selectedUnit = nullptr;
+
+	selectedX = 0;
+	selectedY = 0;
+
+	//when a unit is selected, the possible move coordinates will be put in this list
+	moveList = new std::set<std::pair<int, int>>();
+
+
+
 }
 
 GameState::~GameState() {
@@ -101,13 +111,15 @@ void GameState::die(Unit*& in_unit) {
 }
 
 
-void GameState::moveUnit(Unit* pUnit, int unitPosX, int unitPosY) {
+void GameState::drawMoveUI(Unit* pUnit, int unitPosX, int unitPosY) {
 
 	for (int i = 0; i < tileMapPtr->getMaxX(); i++) {
 		for (int j = 0; j < tileMapPtr->getMaxY(); j++) {
 			
-			if (pUnit->getTravelRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) {
+			//tileMapPtr->getTileInfo(i,j)->getTerrainPtr()->getTraversable()
+			if (  tileMapPtr->getTileInfo(i, j)->getUnitPtr() == nullptr && pUnit->getCurrentTravelRange() >= std::abs(i - unitPosX) + std::abs(j - unitPosY) ) {
 				uiList->push_back(new MovementTile(tileSize, texMap->at("Move"), i, j, cam));
+				moveList->insert(std::pair<int, int>(i, j));
 			}
 		}
 	}
@@ -134,12 +146,25 @@ void GameState::action() {
 
 	if (movementMode == true) {
 		movementMode = false;
+
+
+		if (moveList->count(std::pair<int, int>(x, y))) {
+			currentTile->setUnitPtr(selectedUnit);
+			tileMapPtr->getTileInfo(selectedX, selectedY)->setUnitPtr(nullptr);
+
+		}
 		removeUI("MovementTile");
-		std::cout << "wat" << std::endl;
+		//std::cout << "testing move tile destruction" << std::endl;
+		moveList->clear();
+
 	}
 	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
 		movementMode = true;
-		moveUnit(currentTile->getUnitPtr(), x, y);
+		drawMoveUI(currentTile->getUnitPtr(), x, y);
+		selectedUnit = currentTile->getUnitPtr();
+		selectedX = x;
+		selectedY = y;
+		
 	}
 }
 
