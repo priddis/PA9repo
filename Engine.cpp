@@ -80,6 +80,14 @@ void Engine::drawSprites(Camera* cam)
 			tempUnit = nullptr;
 		}
 	}
+	if (state->getCurrentPlayer() == 1) {
+
+		window->draw(*(state->getP1Text()));
+	}
+	else {
+		window->draw(*(state->getP2Text()));
+	}
+
 }
 
 //iterates through the list of UI elements and draws each one to the screen

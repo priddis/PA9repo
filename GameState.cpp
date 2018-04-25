@@ -58,12 +58,19 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	movementMode = false;
 	selectedUnit = nullptr;
 
+	playerCount = 2;
+
 	selectedX = 0;
 	selectedY = 0;
 
 	//when a unit is selected, the possible move coordinates will be put in this list
 	moveList = new std::set<std::pair<int, int>>();
 
+	sf::Font* f = new sf::Font();
+	f->loadFromFile("assets/DejaVuSans.ttf");
+
+	p1 = new sf::Text("Team 1",   *f  ,20);
+	p2 = new sf::Text("Team 2", *f, 20);
 
 
 }
@@ -87,6 +94,21 @@ std::list<UI*>*& GameState::getUIElements() {
 KeyState & GameState::getKeys()
 {
 	return keys;
+}
+
+int GameState::getCurrentPlayer()
+{
+	return currentPlayer;
+}
+
+sf::Text *& GameState::getP1Text()
+{
+	return p1;
+}
+
+sf::Text *& GameState::getP2Text()
+{
+	return p2;
 }
 
 void GameState::attack(Unit*& attacker, Unit*& target) {
@@ -184,6 +206,9 @@ Camera * GameState::getCamera()
 
 //ends the turn by switching players and adds to the turn counter whenever player1's turn begins
 void GameState::endTurn() {
+
+	std::cout << currentPlayer;
+
 	Unit* tempUnit = nullptr;
 	int x, y = 0;
 	//travel down the entire x 
@@ -199,6 +224,7 @@ void GameState::endTurn() {
 		}
 	}
 	if (currentPlayer < playerCount) {
+		
 		currentPlayer++;
 	}
 	else {
@@ -258,8 +284,12 @@ void GameState::update() {
 		keyPressed = false;
 	}
 
-	if (keys.lshift) {
+	if (keys.lshift && !lshiftDown) {
+		lshiftDown = true;
 		endTurn();
+	}
+	else if (keys.lshift == false) {
+		lshiftDown = false;
 	}
 
 
