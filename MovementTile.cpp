@@ -2,7 +2,7 @@
 
 MovementTile::MovementTile()
 {
-
+	identifier = "MovementTile";
 }
 
 MovementTile::MovementTile(int tileSize, sf::Texture * inTex, int  x, int y, Camera * cam) : UI(inTex)
@@ -14,7 +14,7 @@ MovementTile::MovementTile(int tileSize, sf::Texture * inTex, int  x, int y, Cam
 	//uiSprite.move(x * tSize, y * tSize);
 	uiSprite.move((x - cam->getCamX()) * tSize, (y - cam->getCamY()) * tileSize);
 	//std::cout << cam->getCamX();
-
+	identifier = "MovementTile";
 }
 
 void MovementTile::update(KeyState & curState, Camera * cam)

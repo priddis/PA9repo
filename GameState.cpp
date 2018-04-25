@@ -17,7 +17,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	// lists for sprites and UI to be displayed
 	spriteList = new std::list<sf::Sprite>;
-	uiList = new std::vector<UI*>;
+	uiList = new std::list<UI*>;
 	texMap = GameState::loadTextureFiles();
 
 	//tile map stuff. future put in menu?
@@ -36,7 +36,9 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 	currentPlayer = true;
 	turnCounter = 1;
 
-
+	//single presses
+	keyPressed = false;
+	counter = 0;
 
 	cam = new Camera( ResX / tileSize, ResY / tileSize, tileMapPtr->getMaxX() , tileMapPtr->getMaxY());
 
@@ -68,7 +70,7 @@ std::list<sf::Sprite>*& GameState::getSprites(){
 	return spriteList;
 }
 
-std::vector<UI*>*& GameState::getUIElements() {
+std::list<UI*>*& GameState::getUIElements() {
 	return uiList;
 }
 
@@ -110,18 +112,29 @@ void GameState::moveUnit(Unit* pUnit) {
 	}
 }
 
+void GameState::removeUI(std::string id) { // Removes UI with a specified identifier
+	for (UI* element : *getUIElements()) {
+		if (element->identifier == id) {
+			getUIElements()->remove(element);
+			delete element;
+		}
+	}
+}
+
 void GameState::action() {
 	int x = mainCursor->getX();
 	int y = mainCursor->getY();
 
 	tileInfo* currentTile = tileMapPtr->getTileInfo(x, y);
 
-	if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
+	if (movementMode == true) {
+		movementMode = false;
+		removeUI("MovementTile");
+		std::cout << "wat" << std::endl;
+	}
+	else if(currentTile->getUnitPtr() != NULL && movementMode == false) { // Is there a unit under cursor?
 		movementMode = true;
 		moveUnit(currentTile->getUnitPtr());
-	}
-	else {
-		movementMode = false;
 	}
 }
 
@@ -134,13 +147,6 @@ Camera * GameState::getCamera()
 {
 	return cam;
 }
-
-/*void GameState::moveUnit(Unit & unit){
-
-	
-
-}
-*/
 
 //ends the turn by switching players and adds to the turn counter whenever player1's turn begins
 void GameState::endTurn() {
@@ -183,4 +189,17 @@ std::map<std::string, sf::Texture*>* GameState::loadTextureFiles()
 
 tileMap*& GameState::getTileMap() {
 	return tileMapPtr;
+}
+
+void GameState::update() {
+
+	if (getKeys().space && !keyPressed) {
+		action();
+		keyPressed = true;
+	}
+
+	if (counter % 15 == 0)
+		keyPressed = false;
+
+	counter++;
 }

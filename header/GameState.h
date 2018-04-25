@@ -22,7 +22,7 @@ private:
 
 	//list of sprites to display to the screen
 	std::list<sf::Sprite>* spriteList;
-	std::vector<UI*>* uiList;
+	std::list<UI*>* uiList;
 
 	Cursor *mainCursor;
 
@@ -47,6 +47,9 @@ private:
 
 	void moveUnit(Unit *pUnit);
 	bool movementMode;
+
+	bool keyPressed;
+	int counter;
 public:
 	GameState();
 	GameState(int newTileSize, int ResX, int ResY);
@@ -57,7 +60,8 @@ public:
 	tileMap*& getTileMap(); //should be const
 
 	std::list<sf::Sprite>* & getSprites();
-	std::vector<UI*>* & getUIElements();
+	std::list<UI*>* & getUIElements();
+	void removeUI(std::string id);
 
 	KeyState & getKeys();
 

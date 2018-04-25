@@ -10,6 +10,7 @@ Cursor::Cursor(void) {
 
 	posX = 0;
 	posY = 0;
+	identifier = "Cursor";
 }
 
 Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
@@ -17,7 +18,7 @@ Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
 	tSize = tileSize;
 	posX = 0;
 	posY = 0;
-
+	identifier = "Cursor";
 }
 
 //most of this complicated logic is to make the camera scroll when trying to move beyond what is currently being draw

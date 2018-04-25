@@ -31,5 +31,4 @@ namespace EventManager {
 	void leftMouseButtonDown(KeyState &keys);
 	void rightMouseButtonUp(KeyState &keys);
 	void rightMouseButtonDown(KeyState &keys);
-
 }
