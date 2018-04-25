@@ -12,3 +12,19 @@ Terrain::Terrain(sf::Texture*& in_texture, float in_scale)
 }
 
 Terrain::~Terrain() {}
+
+std::string Terrain::getTerrainType() {
+	return terrainType;
+}
+
+bool Terrain::getTraversable() {
+	return traversable;
+}
+
+void Terrain::setTerrainType(std::string in_terrainType) {
+	terrainType = in_terrainType;
+}
+
+void Terrain::setTraversable(bool in_traversable) {
+	traversable = in_traversable;
+}

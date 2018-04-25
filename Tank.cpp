@@ -14,16 +14,25 @@ Tank::Tank(sf::Texture*& in_texture, int in_team, float in_scale)
 	setCurrentHealth(10);
 	setAttackDamage(5);
 	setAttackRange(3);
-	setTravelRange(2);
+	setMaxTravelRange(3);
+	setCurrentTravelRange(3);
 	setSight(3);
 	setCost(250);
+	setUnitType("Tank");
 }
 
 Tank::~Tank(){}
 
+/*
 void Tank::reduceHealthAttacked(int in_damage, std::string attackerUnitType) {
 	//switch doesn't work with strings. this may seem messy.
 	if		(attackerUnitType == "Soldier") setCurrentHealth(in_damage - 1);
 	else if (attackerUnitType == "Bazookaman") setCurrentHealth(in_damage + 2);
 	else    setCurrentHealth(in_damage);
+}
+*/
+
+void Tank::setDefensiveModifier() {
+	defensiveModifier.insert(std::pair<std::string, int>("Soldier", -2));
+
 }

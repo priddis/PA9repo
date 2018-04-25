@@ -34,7 +34,6 @@ Engine::Engine() {
 	}
 	window->setFramerateLimit(60);
 	
-
 	state = new GameState(tileSize, ResolutionX, ResolutionY);
 
 	//this line was for testing move highlight
@@ -53,8 +52,6 @@ Engine::~Engine()
 //iterates through the list of sprites and draws each one to the screen
 void Engine::drawSprites(Camera* cam)
 {
-
-
 	tileInfo* tempTileInfo = nullptr;
 	Terrain* tempTerrain = nullptr;
 	Unit* tempUnit = nullptr;

@@ -33,8 +33,8 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	//currentPlayer is the player that is currently making their turn
 	//true = team1, false = team2
-	currentPlayer = true;
-	turnCounter = 1;
+	//4/24 modifying this slightly. extensible to more than two teams but also aligning to team "1" and "2" for consitancy. need to start at player 1
+	currentPlayer = 1;
 
 	//TODO: when tilemap is complete add code to get dimensions here
 	//tilemap getMaxX and getMaxY give these values
@@ -78,55 +78,59 @@ KeyState & GameState::getKeys()
 	return keys;
 }
 
-//Unit1 is attacking unit2
-//return type?
-void GameState::attack(Unit* attacker, Unit* target) {
+void GameState::attack(Unit*& attacker, Unit*& target) {
 	//sound!
 	//explosion!
 	//animation!
-//	target->reduceHealthAttacked(attacker->getAttackDamage(), )
 
-	/*
-	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
+	//first, get how the targeted unit will modify the incoming damage
+	int damage = target->getDefensiveModifier(attacker->getUnitType());
+	//then get the attacking units attack damage and sum
+	damage = damage + attacker->getAttackDamage();
+	//reduce the targets health (down to 0 max)
+	target->setCurrentHealth(target->getCurrentHealth() - damage);
+	//if we hit 0, target dies
+	if (target->getCurrentHealth() == 0) die(target);
 
-	if(unit2->getCurrentHealth() <= 0){
-	delete unit2;
-	}
-	*/
 }
 
+void GameState::die(Unit*& in_unit) {
+	delete in_unit;
+	in_unit = nullptr;
+}
 
-//TODO:
-//Death
-//not sure how to work in death yet
-//Current thoughts are that if current hp is set below zero, we delete the pointer but this could mess up later things
-//tw: i think this is good. dealloc unit, set tileInfo's unit ptr to nullptr
-
-//	unit2->setCurrentHealth( unit2->getCurrentHealth() - unit1->getAttackDamage() );
-
-	/*if(unit2->getCurrentHealth() <= 0){
-		delete unit2;
-	}
-	*/
-
-//}
 
 Camera * GameState::getCamera()
 {
 	return cam;
 }
 
-/*void GameState::moveUnit(Unit & unit){
-
+void GameState::setPlayerCount(int in_playerCount) {
+	playerCount = in_playerCount;
 }
-*/
+
 
 //ends the turn by switching players and adds to the turn counter whenever player1's turn begins
 void GameState::endTurn() {
-	currentPlayer = !currentPlayer;
-
-	if (currentPlayer) {
-		turnCounter++;
+	Unit* tempUnit = nullptr;
+	int x, y = 0;
+	//travel down the entire x 
+	for (x = 0; x < tileMapPtr->getMaxX(); x++) {
+		//travel down the entire y
+		for (y = 0; y < tileMapPtr->getMaxY(); y++) {
+			//get the unit in this x, y coordinate
+			tempUnit = tileMapPtr->getTileInfo(x, y)->getUnitPtr();
+			//if the tile contains a unit owned by the current player, reset its travel range to max
+			if (tempUnit->getTeam() == currentPlayer) {
+				tempUnit->setCurrentTravelRange(tempUnit->getMaxTravelRange());
+			}
+		}
+	}
+	if (currentPlayer < playerCount) {
+		currentPlayer++;
+	}
+	else {
+		currentPlayer = 1;
 	}
 }
 
