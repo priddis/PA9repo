@@ -4,7 +4,6 @@
 #include "header/GameState.h"
 #include "header/EventManager.h"
 #include "header/Camera.h"
-#include "header/MoveHighlight.h"
 #include <fstream>
 
 
