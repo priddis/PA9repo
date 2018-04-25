@@ -1,6 +1,6 @@
 //not much needed for this class. derived from terrain
 //road is the only terrain tile with a negative impedence (units will go faster!)
-//tw 4/18/18
+//4/18/18
 
 #include "header/Road.h"
 

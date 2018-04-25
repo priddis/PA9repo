@@ -65,6 +65,9 @@ public:
 
 	KeyState & getKeys();
 
+	//the attack does the act of attacking, but maybe not checking whether it hsould be allowed? like to far, etc.
+	void attack(tileInfo* attacker, tileInfo* target);
+
 	void endTurn();
 
 	void setTileSize(int newSize);
@@ -74,4 +77,6 @@ public:
 
 	Cursor* getCursor();
 	Camera* getCamera();
+
+	std::map<std::string, sf::Texture*>* getTexMap();
 };

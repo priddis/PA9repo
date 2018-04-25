@@ -1,6 +1,8 @@
 #include "header/Cursor.h"
 #include <iostream>
 
+//this constructor should not be used anymore
+//left for testing purposes
 Cursor::Cursor(void) {
 	sf::Texture* pTexture = new sf::Texture();
 	if (!(pTexture)->loadFromFile("assets/cursor.png")) {
@@ -21,25 +23,32 @@ Cursor::Cursor(int tileSize, sf::Texture * inTex) : UI(inTex)
 	identifier = "Cursor";
 }
 
-//most of this complicated logic is to make the camera scroll when trying to move beyond what is currently being draw
-//to screen
+//most of this complicated logic is to make the camera scroll 
+//when trying to move beyond what is currently being drawn to screen
+//the boundaries of the map are also accounted for
 void Cursor::update(KeyState &curState, Camera* cam) {
 
-	if (counter % 8 == 0) { //set to 8 as an adjustment to the cursor speed
-		std::cout << "cursor: " << posX << " " << posY << "\n";
+	//the counter prevents the cursor from moving every frame
+	//we want it to be easy to stop the cursor on a certian box on the grid
+	if (counter % 8 == 0) {
+		//std::cout << "cursor: " << posX << " " << posY << "\n";
 		//std::cout << "max:" << cam->getMaxY();
 		if (curState.w) {
+
+			//if the cursor is at the edge of the screen and tries to move past it
+			//then the camera needs to move instead of the cursor
 			if (posY == cam->getCamY()) {
 				cam->moveCamera(0, -1);
 			}
 			else {
 				uiSprite.move(0, -tSize);
 			}
-			
+			//this prevents the cursor from going off the screen on the topside
 			if (posY > 0) {
 				posY--;
 			}
 		}
+		//these other if statments work off the same logic as the above one, just for different directions
 		if (curState.a) {
 
 			if (posX == cam->getCamX()) {
@@ -92,7 +101,6 @@ int Cursor::getX() {
 int Cursor::getY() {
 	return posY;
 }
-
 
 void Cursor::movePos(int xOffset, int yOffset)
 {

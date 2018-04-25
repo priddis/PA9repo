@@ -122,8 +122,11 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Grass.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MOVEHIGHLIGHT.CPP" />
     <ClCompile Include="Road.cpp" />
+    <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="tileInfo.cpp" />
@@ -138,8 +141,11 @@
     <ClInclude Include="header\Engine.h" />
     <ClInclude Include="header\EventManager.h" />
     <ClInclude Include="header\GameState.h" />
+    <ClInclude Include="header\Grass.h" />
     <ClInclude Include="header\KeyState.h" />
+    <ClInclude Include="header\MoveHighlight.h" />
     <ClInclude Include="header\Road.h" />
+    <ClInclude Include="header\Soldier.h" />
     <ClInclude Include="header\Tank.h" />
     <ClInclude Include="header\Terrain.h" />
     <ClInclude Include="header\tileInfo.h" />
