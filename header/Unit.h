@@ -14,10 +14,13 @@ private:
 	int currentHealth;
 	int attackDamage;
 	int attackRange;
-	int travelRange;
+	int maxTravelRange;
+	int currentTravelRange;
 	int sight;
 	int cost;
 	int team;
+
+	std::string unitType;
 
 public:
 	//all units take a starting texture. scale will most likely be necessary, but will have a default val of 1 until we know appropriate size.
@@ -32,25 +35,36 @@ public:
 
 	//super effective / not very effective depending on unit. better solution than passing a string? but this will work
 	//for example, tank shoots an infantry.. not very effective. tank damage is 5 normally, - 1 because its shooting at an infantry
-	virtual void reduceHealthAttacked(int in_damage, std::string attackerUnitType) = 0;
+	//virtual void reduceHealthAttacked(int in_damage, std::string attackerUnitType) = 0;
+
+
+	std::map<std::string, int> defensiveModifier;
 
 	//****getters
 	int getMaxHealth();
 	int getCurrentHealth();
 	int getAttackDamage();
 	int getAttackRange();
-	int getTravelRange();
+	int getMaxTravelRange();
+	int getCurrentTravelRange();
 	int getCost();
 	int getSight();
 	int getTeam();
+	std::string getUnitType();
+	int getDefensiveModifier(std::string in_unit);
 
 	//****setters
 	void setMaxHealth(int in_health); 
 	void setCurrentHealth(int in_health);
 	void setAttackDamage(int in_damage);
 	void setAttackRange(int in_range);
-	void setTravelRange(int in_range);
 	void setSight(int in_sight);
+	void setCurrentTravelRange(int in_range);
 	void setCost(int in_cost);
 	void setTeam(int in_team);
+
+protected:
+	void setMaxTravelRange(int in_range);
+	void setUnitType(std::string);
+	virtual void setDefensiveModifier() = 0;
 };

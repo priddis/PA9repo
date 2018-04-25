@@ -5,6 +5,7 @@
 Grass::Grass(sf::Texture* in_texture, float in_scale)
 	: Terrain(in_texture, in_scale)
 {
+	setTerrainType("Grass");
 }
 
 Grass::~Grass() {}

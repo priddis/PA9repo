@@ -26,8 +26,13 @@ private:
 
 	Cursor *mainCursor;
 
-	bool currentPlayer;
-	int turnCounter;
+	//modifying this a little bit
+	//bool currentPlayer;
+	//int turnCounter;
+
+	int playerCount;
+	int currentPlayer;
+
 	int mapSizeX;
 	int mapSizeY;
 	
@@ -65,10 +70,11 @@ public:
 
 	KeyState & getKeys();
 
-	//the attack does the act of attacking, but maybe not checking whether it hsould be allowed? like to far, etc.
-	void attack(tileInfo* attacker, tileInfo* target);
+	void attack(Unit*& attacker, Unit*& target);
+	void die(Unit*& in_unit);
 
 	void endTurn();
+	void setPlayerCount(int in_playerCount = 2);
 
 	void setTileSize(int newSize);
 

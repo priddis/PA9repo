@@ -32,8 +32,13 @@ int Unit::getAttackDamage() {
 int Unit::getAttackRange() {
 	return attackRange;
 }
-int Unit::getTravelRange() {
-	return travelRange;
+
+int Unit::getCurrentTravelRange() {
+	return currentTravelRange;
+}
+
+int Unit::getMaxTravelRange() {
+	return maxTravelRange;
 }
 
 int Unit::getCost() {
@@ -48,13 +53,22 @@ int Unit::getTeam() {
 	return team;
 }
 
+std::string Unit::getUnitType() {
+	return unitType;
+}
+
+int Unit::getDefensiveModifier(std::string in_unit) {
+	return defensiveModifier.at(in_unit);
+}
+
 //****setters
 void Unit::setMaxHealth(int in_health) {
 	maxHealth = in_health;
 }
 
 void Unit::setCurrentHealth(int in_health) {
-	currentHealth = in_health;
+	if (in_health <= 0) currentHealth = 0;
+	else currentHealth = in_health;
 }
 
 void Unit::setAttackDamage(int in_damage) {
@@ -65,8 +79,8 @@ void Unit::setAttackRange(int in_range) {
 	attackRange = in_range;
 }
 
-void Unit::setTravelRange(int in_range) {
-	travelRange = in_range;
+void Unit::setCurrentTravelRange(int in_range) {
+	currentTravelRange = in_range;
 }
 
 void Unit::setSight(int in_sight) {
@@ -80,3 +94,15 @@ void Unit::setCost(int in_cost) {
 void Unit::setTeam(int in_team) {
 	team = in_team;
 }
+
+//protected
+
+void Unit::setMaxTravelRange(int in_range) {
+	maxTravelRange = in_range;
+}
+
+void Unit::setUnitType(std::string in_unitType) {
+	unitType = in_unitType;
+}
+
+//defensive modifier pure virtual
