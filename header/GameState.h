@@ -70,6 +70,10 @@ private:
 
 	sf::Text* p1;
 	sf::Text* p2;
+	sf::Text* pTeam1;
+	sf::Text* pTeam2;
+	sf::Text* healthText;
+
 
 public:
 	GameState();
@@ -90,7 +94,9 @@ public:
 
 	sf::Text* & getP1Text();
 	sf::Text* & getP2Text();
-
+	sf::Text *& GameState::getHealthText();
+	sf::Text* & getP1TeamText();
+	sf::Text* & getP2TeamText();
 	void attack(Unit*& attacker, Unit*& target);
 	void die(Unit*& in_unit);
 

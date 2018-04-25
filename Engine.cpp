@@ -80,12 +80,24 @@ void Engine::drawSprites(Camera* cam)
 			tempUnit = nullptr;
 		}
 	}
-	if (state->getCurrentPlayer() == 1) {
 
-		window->draw(*(state->getP1Text()));
-	}
-	else {
-		window->draw(*(state->getP2Text()));
+	Unit* pUnit = state->getTileMap()->getTileInfo(state->getCursor()->getX(), state->getCursor()->getY())->getUnitPtr();
+	if (pUnit != NULL) {
+		if (pUnit->getTeam() == 1)
+			window->draw(*(state->getP1Text()));
+		else
+			window->draw(*(state->getP2Text()));
+
+		state->getHealthText()->setString("Health: " + std::to_string(pUnit->getCurrentHealth()));
+		state->getHealthText()->setPosition(100, 0);
+		window->draw(*(state->getHealthText()));
+
+		if (state->getCurrentPlayer() == 1) {
+			window->draw(*(state->getP1TeamText()));
+		}
+		else {
+			window->draw(*(state->getP2TeamText()));
+		}
 	}
 
 }
