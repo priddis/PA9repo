@@ -13,7 +13,7 @@ Tank::Tank(sf::Texture*& in_texture, int in_team, float in_scale)
 	setMaxHealth(10);
 	setCurrentHealth(10);
 	setAttackDamage(5);
-	setAttackRange(2);
+	setAttackRange(1);
 	setMaxTravelRange(3);
 	setCurrentTravelRange(3);
 	setSight(3);

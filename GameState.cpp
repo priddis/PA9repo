@@ -74,9 +74,9 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	p1 = new sf::Text("Team 1", *f, 20);
 	p2 = new sf::Text("Team 2", *f, 20);
-	pTeam1 = new sf::Text("Team 1", *f, 20);
+	pTeam1 = new sf::Text("Current: Team 1", *f, 20);
 	pTeam1->setPosition(0, 20);
-	pTeam2 = new sf::Text("Team 2", *f, 20);
+	pTeam2 = new sf::Text("Current: Team 2", *f, 20);
 	pTeam2->setPosition(0, 20);
 	healthText = new sf::Text("", *f, 20);
 
