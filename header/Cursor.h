@@ -1,7 +1,7 @@
 #pragma once
 #include "UI.h"
-//#include "Camera.h"
-//#include "tileInfo.h"
+
+//The cursor class is a UI object controlled by the player. The cursor is how the player interacts with the rest of the game.
 
 class Cursor : public UI {
 private:

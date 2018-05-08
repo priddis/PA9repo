@@ -1,5 +1,7 @@
 //An engine object contains the main game loop and is where objects are rendered to the screen
-
+/*Engine contains a gameState object and a window object.
+GameState is where all the game logic and data is stored.
+*/
 #include "header/Engine.h"
 #include <string>
 #include <fstream>
@@ -12,8 +14,10 @@ Engine::Engine() {
 	int ResolutionX = 800;
 	int ResolutionY = 800;
 
+	//set fullscreen by default in case the fullscreen setting is not defined in config.txt
 	bool Fullscreen = false;
 
+	//Here we retrieve the settings from the settings map and use them to set things like the resolution.
 	if (settings.count("ResX")) {
 		ResolutionX = std::stoi(*settings.at("ResX"));
 	}
@@ -32,9 +36,11 @@ Engine::Engine() {
 	else{
 		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "Farm Wars");
 	}
+
+
+
 	window->setFramerateLimit(60);
 
-  
 	state = new GameState(tileSize, ResolutionX, ResolutionY);
 
 	

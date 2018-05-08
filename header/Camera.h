@@ -1,4 +1,6 @@
 #pragma once
+
+//The coordinates struct is used to bind info about the camera position and size together
 struct coordinates {
 
 	int topLeftX;

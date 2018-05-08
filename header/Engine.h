@@ -17,14 +17,13 @@ public:
 	void drawSprites(Camera* cam);
 	void drawUIElements();
 	void updateUI(KeyState &keys);
-	void addSprite(sf::Sprite &newSprite);
-	void removeSprite(sf::Sprite* &deleteSprite);
+
 	void run();
 
 private:
 
-
-	int tileSize = 100; //change this size later
+	//tileSize is the amount of pixels on one side of the square tiles that make up the map
+	int tileSize = 100; 
 
 	std::map<std::string, std::string*> loadConfigFile();
 
