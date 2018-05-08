@@ -25,34 +25,44 @@ private:
 	std::list<sf::Sprite>* spriteList;
 	std::list<UI*>* uiList;
 
+	//pointer to the cursor controlled by the player(s)
 	Cursor *mainCursor;
 
-	//modifying this a little bit
-	//bool currentPlayer;
-	//int turnCounter;
-
+	//number of players in current game
 	int playerCount;
+
+	//number of player currently moving
 	int currentPlayer;
 
+	//number of tiles in a row on the map
 	int mapSizeX;
+
+	//number of rows in a column
 	int mapSizeY;
 	
+	//size of the side of a square tile ( in pixels)
 	int tileSize;
 
 	//struct of keys currently held down
 	KeyState keys;
 
+	//texMap is a map linking the name of a unit to a pointer of its texture. This is to ensure that only one texture is loaded per unit type.
 	std::map<std::string, sf::Texture*>* texMap;
+
+	//pointer to the tilemap
 	tileMap* tileMapPtr;
 
 	//runs at launch, loads the all the texture files needed for sprites
 	//placed in gamestate for convenience
 	std::map<std::string, sf::Texture*>* loadTextureFiles();
 
+	//pointer to the camera
 	Camera* cam;
 
+	//drawMoveUI draws the blue highlighting for the squares that it is possible for the selected unit to move to
 	void drawMoveUI(Unit *pUnit, int unitPosX, int unitPosY);
 
+	//pointer to the currently selected unit. can be nullptr if no unit is selected
 	Unit* selectedUnit;
 
 	bool movementMode;
@@ -61,6 +71,7 @@ private:
 	bool lshiftDown;
 	int counter;
 
+	//A list of all the blue highlight squares that indicate it is possible for the selected unit to move to that square
 	std::set<std::pair<int, int>>* moveList;
 	std::set<std::pair<int, int>>* enemyList;
 
