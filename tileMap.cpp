@@ -21,7 +21,7 @@ tileMap::~tileMap()
 	}
 }
 
-tileInfo* tileMap::getTileInfo(int x, int y) {
+tileInfo*& tileMap::getTileInfo(int x, int y) {
 	return map[x][y];
 }
 

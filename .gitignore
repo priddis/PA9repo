@@ -7,3 +7,6 @@ x64/
 *.filters
 *.dll
 *.suo
+PA9.vcxproj
+*.vcxproj
+PA9.vcxproj

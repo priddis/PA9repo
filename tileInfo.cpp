@@ -28,7 +28,7 @@ void tileInfo::setTerrainPtr(Terrain* in_terrain) {
 	terrainPtr = in_terrain;
 }
 
-Unit* tileInfo::getUnitPtr() {
+Unit* & tileInfo::getUnitPtr() {
 	return unitPtr;
 }
 

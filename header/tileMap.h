@@ -30,7 +30,7 @@ public:
 	bool allocTerrainObj(Terrain*& terrainPMem, sf::Texture*& texturePMem, std::string in_terrainType, int scale);
 
 	void setTileInfo(int x, int y, tileInfo* tileInfoPMem);
-	tileInfo* getTileInfo(int x, int y);
+	tileInfo*& getTileInfo(int x, int y);
 
 	int getMaxX();
 	int getMaxY();

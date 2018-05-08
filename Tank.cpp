@@ -13,12 +13,14 @@ Tank::Tank(sf::Texture*& in_texture, int in_team, float in_scale)
 	setMaxHealth(10);
 	setCurrentHealth(10);
 	setAttackDamage(5);
-	setAttackRange(3);
+	setAttackRange(1);
 	setMaxTravelRange(3);
 	setCurrentTravelRange(3);
 	setSight(3);
 	setCost(250);
 	setUnitType("Tank");
+
+	setDefensiveModifier();
 }
 
 Tank::~Tank(){}
@@ -34,5 +36,6 @@ void Tank::reduceHealthAttacked(int in_damage, std::string attackerUnitType) {
 
 void Tank::setDefensiveModifier() {
 	defensiveModifier.insert(std::pair<std::string, int>("Soldier", -2));
+	defensiveModifier.insert(std::pair<std::string, int>("Tank", 0));
 
 }

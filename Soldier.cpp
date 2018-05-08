@@ -32,5 +32,6 @@ void Soldier::reduceHealthAttacked(int in_damage, std::string attackerUnitType) 
 
 void Soldier::setDefensiveModifier() {
 	defensiveModifier.insert(std::pair<std::string, int>("Tank", -1));
+	defensiveModifier.insert(std::pair<std::string, int>("Soldier", 0));
 
 }

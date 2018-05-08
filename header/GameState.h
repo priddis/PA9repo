@@ -8,6 +8,7 @@ and a struct for the keys being pressed
 #pragma once
 #include <list>
 #include <vector>
+#include <set>
 #include <SFML/Graphics.hpp>
 #include "header/Unit.h"
 #include "header/Cursor.h"
@@ -50,11 +51,30 @@ private:
 
 	Camera* cam;
 
-	void moveUnit(Unit *pUnit);
+	void drawMoveUI(Unit *pUnit, int unitPosX, int unitPosY);
+
+	Unit* selectedUnit;
+
 	bool movementMode;
 
 	bool keyPressed;
+	bool lshiftDown;
 	int counter;
+
+	std::set<std::pair<int, int>>* moveList;
+	std::set<std::pair<int, int>>* enemyList;
+
+
+	int selectedX;
+	int selectedY;
+
+	sf::Text* p1;
+	sf::Text* p2;
+	sf::Text* pTeam1;
+	sf::Text* pTeam2;
+	sf::Text* healthText;
+
+
 public:
 	GameState();
 	GameState(int newTileSize, int ResX, int ResY);
@@ -70,6 +90,13 @@ public:
 
 	KeyState & getKeys();
 
+	int getCurrentPlayer();
+
+	sf::Text* & getP1Text();
+	sf::Text* & getP2Text();
+	sf::Text *& GameState::getHealthText();
+	sf::Text* & getP1TeamText();
+	sf::Text* & getP2TeamText();
 	void attack(Unit*& attacker, Unit*& target);
 	void die(Unit*& in_unit);
 
@@ -78,7 +105,7 @@ public:
 
 	void setTileSize(int newSize);
 
-	void GameState::attack(Unit* unit1, Unit* unit2);
+	//void GameState::attack(Unit* unit1, Unit* unit2);
 	void GameState::action();
 
 	Cursor* getCursor();

@@ -16,7 +16,7 @@ public:
 	void setUnitPtr(Unit*);
 	void setTerrainPtr(Terrain*);
 
-	Unit* getUnitPtr();
+	Unit* & getUnitPtr();
 	Terrain* getTerrainPtr();
 
 };
