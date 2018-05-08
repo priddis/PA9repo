@@ -125,13 +125,7 @@ void Engine::updateUI(KeyState &keys)
 	}
 }
 
-//void keyPresses() {
-//	bool spacePressed = false; // needed for a single press
-//	while (getKe.space && !spacePressed) {
-//		state->action();
-//		spacePressed = true;
-//	}
-//}
+
 
 //run() contains the main game loop
 //this is where events are handled through the event handler
