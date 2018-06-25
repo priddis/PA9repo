@@ -4,10 +4,12 @@
 class Menu {
 
 	bool open;
+	std::map<std::string, sf::Texture*>* menuTexMap;
 
 private:
 	std::list<UI*>* menuUiList;
-	
+
+	void loadMenuTexMap();
 
 public:
 
@@ -15,6 +17,7 @@ public:
 	~Menu();
 	std::list<UI*>* & getMenuUI();
 	void update(KeyState & keys );
+
 
 	bool isOpen();
 };

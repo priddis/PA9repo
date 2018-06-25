@@ -32,6 +32,11 @@ void UI::draw(sf::RenderTarget& target, sf::RenderStates states) const {
 	target.draw(uiSprite, states);
 }
 
+void UI::moveUI(int x, int y)
+{
+	uiSprite.move(x, y);
+}
+
 void UI::setTexture(sf::Texture* &texture) {
 	uiSprite.setTexture(*texture);
 }

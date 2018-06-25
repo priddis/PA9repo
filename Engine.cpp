@@ -38,14 +38,12 @@ Engine::Engine() {
 	}
 
 	
+	state = new GameState(tileSize, ResolutionX, ResolutionY, "firstmap.txt");
 
 	window->setFramerateLimit(60);
 
 	mainMenu = new Menu();
 
-	std::string mapName = "firstmap.txt";
-
-	
 }
 
 Engine::~Engine()
@@ -154,10 +152,11 @@ void Engine::run() {
 
 		if (mainMenu != nullptr) {
 			drawUIList(mainMenu->getMenuUI());
-			mainMenu->update(state->getKeys());
+			mainMenu->update( state->getKeys() );
 
 			if (!(mainMenu->isOpen())) {
 				delete mainMenu;
+				mainMenu = nullptr;
 			}
 
 		}

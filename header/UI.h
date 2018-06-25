@@ -23,6 +23,8 @@ public:
 
 	std::string identifier;
 
+	void moveUI(int x, int y);
+
 protected:
 
 
