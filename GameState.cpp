@@ -11,8 +11,9 @@ GameState::GameState()
 {
 }
 
-GameState::GameState(int newTileSize, int ResX, int ResY)
+GameState::GameState(int newTileSize, int ResX, int ResY, std::string mapName)
 {
+
 	tileSize = newTileSize;
 
 	// lists for sprites and UI to be displayed
@@ -22,7 +23,7 @@ GameState::GameState(int newTileSize, int ResX, int ResY)
 
 	//tile map stuff. future put in menu?
 	tileMapPtr = new tileMap(texMap, 1);
-	tileMapPtr->openMap("firstMap.txt");
+	tileMapPtr->openMap(mapName);
 
 	//testing tilemap
 	//tileMapPtr->getTileInfo(19, 19)->getTerrainPtr();
@@ -293,6 +294,20 @@ void GameState::setTileSize(int newSize)
 
 	tileSize = newSize;
 	std::cout << "\n new tilesize: " << newSize;
+}
+
+void GameState::changeMap(std::string newMapName)
+{
+	delete tileMapPtr;
+	tileMapPtr = new tileMap(texMap, 1);
+	tileMapPtr->openMap(newMapName);
+
+	int width = cam->getCamWidth();
+	int height = cam->getCamHeight();
+
+
+	delete cam;
+	cam = new Camera(width, height, tileMapPtr->getMaxX(), tileMapPtr->getMaxY());
 }
 
 //runs at launch, loads the all the texture files needed for sprites

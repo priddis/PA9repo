@@ -4,6 +4,7 @@
 #include "header/GameState.h"
 #include "header/EventManager.h"
 #include "header/Camera.h"
+#include "header/Menu.h"
 #include <fstream>
 
 
@@ -16,6 +17,8 @@ public:
 
 	void drawSprites(Camera* cam);
 	void drawUIElements();
+	void drawUIList(std::list<UI*>* list);
+
 	void updateUI(KeyState &keys);
 
 	void run();
@@ -29,6 +32,7 @@ private:
 
 	GameState* state;
 	sf::RenderWindow* window;
+	Menu* mainMenu;
 
 	
 

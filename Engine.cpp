@@ -37,11 +37,13 @@ Engine::Engine() {
 		window = new sf::RenderWindow(sf::VideoMode(ResolutionX, ResolutionY), "Farm Wars");
 	}
 
-
+	
 
 	window->setFramerateLimit(60);
 
-	state = new GameState(tileSize, ResolutionX, ResolutionY);
+	mainMenu = new Menu();
+
+	std::string mapName = "firstmap.txt";
 
 	
 }
@@ -149,10 +151,23 @@ void Engine::run() {
 		}
 		//clear the screen in order to render the next frame
 		window->clear();
-		state->update();
-		drawSprites(state->getCamera());
-		updateUI(state->getKeys());
-		drawUIElements();
+
+		if (mainMenu != nullptr) {
+			drawUIList(mainMenu->getMenuUI());
+			mainMenu->update(state->getKeys());
+
+			if (!(mainMenu->isOpen())) {
+				delete mainMenu;
+			}
+
+		}
+		else {
+			state->update();
+			drawSprites(state->getCamera());
+			updateUI(state->getKeys());
+			drawUIElements();
+		}
+
 		window->display();
 	}
 }
@@ -181,5 +196,14 @@ std::map<std::string,std::string*> Engine::loadConfigFile()
 	
 
 
+
+}
+
+//maybe make this more generic later?
+void Engine::drawUIList(std::list<UI*>* list)
+{
+	for (UI* element : *(list)) {
+		window->draw(*element);
+	}
 
 }

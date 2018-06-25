@@ -88,7 +88,7 @@ private:
 
 public:
 	GameState();
-	GameState(int newTileSize, int ResX, int ResY);
+	GameState(int newTileSize, int ResX, int ResY, std::string mapName);
 	~GameState();
 
 	void update();
@@ -115,6 +115,8 @@ public:
 	void setPlayerCount(int in_playerCount = 2);
 
 	void setTileSize(int newSize);
+
+	void changeMap(std::string newMapName);
 
 	//void GameState::attack(Unit* unit1, Unit* unit2);
 	void GameState::action();
